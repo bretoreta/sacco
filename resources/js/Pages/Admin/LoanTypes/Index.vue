@@ -41,7 +41,7 @@ const bannerTimeout = () => {
 }
 
 const submit = () => {
-    form.post(route('admin.loan.types.store'), {
+    form.post(route('admin.loans.types.store'), {
         onSuccess: () => {
             form.reset(),
             bannerTimeout()
@@ -60,7 +60,7 @@ const editLoanType = (loan_type) => {
 }
 
 const updateLoanType = () => {
-    editForm.put(route('admin.loan.types.update', editForm.id), {
+    editForm.put(route('admin.loans.types.update', editForm.id), {
         onSuccess: () => {
             editForm.reset(),
             editingLoanType.value = false,
@@ -87,7 +87,7 @@ const deleteLoanType = (id) => {
     <AdminLayout title="Manage Loan Types">
         <div class="py-6 md:py-12">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="grid grid-cols-12 gap-5 px-4 md:px-32">
+                <div class="grid grid-cols-12 gap-5 px-4">
                     <div class="col-span-12 md:col-span-8">
                         <div class="p-5 text-lg sm:rounded-t-xl font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                             Browse Loan Types

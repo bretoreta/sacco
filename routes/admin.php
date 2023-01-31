@@ -3,6 +3,9 @@
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoanTypesController;
+use App\Http\Controllers\Admin\MeetingsController;
+use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\TransactionsController;
 use Illuminate\Support\Facades\Route;
 
 // Administrator Route Groups
@@ -10,17 +13,55 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     // Administrator Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard.index');
 
-    // Manage Loan
-    Route::prefix('loan')->group(function () {
-        // Manage Loan Types
-        Route::get('/types', [LoanTypesController::class, 'index'])->name('admin.loan.types.index');
-        Route::post('/types', [LoanTypesController::class, 'store'])->name('admin.loan.types.store');
-        Route::put('/types/{loan}', [LoanTypesController::class, 'update'])->name('admin.loan.types.update');
-        Route::delete('/types/{loan}', [LoanTypesController::class, 'delete'])->name('admin.loan.types.delete');
-    });
-
     Route::prefix('/loans')->group(function() {
         // Manage Applied User Loans
         Route::get('/', [LoansController::class, 'index'])->name('admin.loans.index');
+        Route::post('/', [LoansController::class, 'store'])->name('admin.loans.store');
+        Route::put('/{loan:uuid}', [LoansController::class, 'update'])->name('admin.loans.update');
+        Route::delete('/{loan}/delete', [LoansController::class, 'delete'])->name('admin.loans.delete');
+        Route::get('/approve', [LoansController::class, 'approve'])->name('admin.loans.approve');
+        Route::post('/{loan:uuid}/approve', [LoansController::class, 'approveLoan'])->name('admin.loans.approve.true');
+        Route::post('/{loan:uuid}/reject', [LoansController::class, 'rejectLoan'])->name('admin.loans.approve.false');
+
+        // Manage Loan Types
+        Route::get('/types', [LoanTypesController::class, 'index'])->name('admin.loans.types.index');
+        Route::post('/types', [LoanTypesController::class, 'store'])->name('admin.loans.types.store');
+        Route::put('/types/{loan}', [LoanTypesController::class, 'update'])->name('admin.loans.types.update');
+        Route::delete('/types/{loan}', [LoanTypesController::class, 'delete'])->name('admin.loans.types.delete');
+    });
+
+    Route::prefix('/transactions')->group(function() {
+        // Manage Transactions
+        Route::get('/', [TransactionsController::class, 'index'])->name('admin.transactions.index');
+    });
+
+    Route::prefix('/members')->group(function() {
+        // Manage Members
+        Route::get('/', [MembersController::class, 'index'])->name('admin.members.index');
+    });
+
+    Route::prefix('/meetings')->group(function() {
+        // Manage meetings
+        Route::get('/', [MeetingsController::class, 'index'])->name('admin.meetings.index');
+    });
+
+    Route::prefix('/legals')->group(function() {
+        // Manage legal docs
+        Route::get('/', [LegalDocsController::class, 'index'])->name('admin.legals.index');
+    });
+
+    Route::prefix('/mailroom')->group(function() {
+        // Manage legal docs
+        Route::get('/', [MailRoomController::class, 'index'])->name('admin.mailroom.index');
+    });
+
+    Route::prefix('/settings')->group(function() {
+        // Manage App Settings
+        Route::get('/', [SettingsController::class, 'index'])->name('admin.settings.index');
+    });
+
+    Route::prefix('/feedback')->group(function() {
+        // Manage App feedback
+        Route::get('/', [FeedbackController::class, 'index'])->name('admin.feedback.index');
     });
 });

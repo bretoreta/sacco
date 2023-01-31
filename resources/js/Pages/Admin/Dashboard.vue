@@ -118,7 +118,7 @@ const chartData = reactive({
     <AdminLayout title="Admin Dashboard">
         <div class="py-12 px-4 md:px-0">
             <div class="mx-auto sm:px-6 lg:px-8">
-                <div class="grid grid-cols-8 gap-5 px-0 md:px-32">
+                <div class="grid grid-cols-8 gap-5 px-0">
                     <div class="col-span-8 md:col-span-4 lg:col-span-2">
                         <div class="bg-yellow-500 border border-yellow-300 rounded-lg shadow-md p-5">
                             <div class="flex items-center space-x-6 text-yellow-300">
@@ -197,7 +197,7 @@ const chartData = reactive({
                         </div>
                     </div>
                 </div>
-                <div class="grid grid-cols-12 gap-5 px-0 md:px-32 my-16">
+                <div class="grid grid-cols-12 gap-5 px-0 my-16">
                     <div class="col-span-12 md:col-span-8">
                         <div class="bg-white border border-gray-200 rounded-md shadow-md px-4 lg:px-10 pb-5 lg:pb-10 pt-0 lg:pt-5">
                             <div class="p-5 text-lg font-bold text-left text-gray-900 bg-white">
