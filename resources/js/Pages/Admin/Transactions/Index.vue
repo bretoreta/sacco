@@ -1,35 +1,32 @@
 <script setup>
-import { reactive, ref } from 'vue';
+import { onBeforeMount, reactive, ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
 import DialogModal from '@/Components/DialogModal.vue';
 
-defineProps({
+const pageprops = defineProps({
     transactions: Object,
     loan_disbursements_sum: Number,
     loan_repayments_sum: Number,
     contributions_sum: Number,
     deposits_sum: Number,
-})
+});
 
 const NumberFormat = Intl.NumberFormat(undefined, { style: 'currency', currency: 'KES' });
+const data = ref([]);
+const categories = ref([]);
 
 const chartOptions = reactive({
     series: [{
-        name: 'Sales',
-        data: [4, 3, 10, 9, 29, 19, 22, 9, 12, 7, 19, 5, 13, 9, 17, 2, 7, 5]
+        name: 'Transacted',
+        data: data.value
     }],
     data: {
         chart: {
             type: 'area',
             stacked: false,
             height: 350,
-            zoom: {
-                type: 'x',
-                enabled: true,
-                autoScaleYaxis: true
-            },
             toolbar: {
                 autoSelected: 'zoom'
             }
@@ -59,7 +56,7 @@ const chartOptions = reactive({
         },
         xaxis: {
             type: 'datetime',
-            categories: ['1/11/2000', '2/11/2000', '3/11/2000', '4/11/2000', '5/11/2000', '6/11/2000', '7/11/2000', '8/11/2000', '9/11/2000', '10/11/2000', '11/11/2000', '12/11/2000', '1/11/2001', '2/11/2001', '3/11/2001', '4/11/2001', '5/11/2001', '6/11/2001'],
+            categories: categories.value,
             tickAmount: 10,
             labels: {
                 formatter: function (value, timestamp, opts) {
@@ -77,6 +74,15 @@ const chartOptions = reactive({
         }
     }
 });
+
+onBeforeMount(() => {
+    for (var i = 0; i < pageprops.transactions.data.length; i++) {
+        data.value[i] = pageprops.transactions.data[i].amount;
+        categories.value[i] = pageprops.transactions.data[i].created_at;
+    }
+
+    console.log(categories.value);
+})
 
 const bannerTimeout = () => {
     setTimeout(() => {
