@@ -19,6 +19,7 @@
         "vue": "^3.2.31"
     },
     "dependencies": {
+        "@suadelabs/vue3-multiselect": "^1.0.2",
         "apexcharts": "^3.36.3",
         "vue3-apexcharts": "^1.4.1"
     }

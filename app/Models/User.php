@@ -72,4 +72,9 @@ class User extends Authenticatable implements MustVerifyEmail
                     ->withPivot('plan_id', 'amount_payable', 'amount_remaining')
                     ->withTimestamps();
     }
+
+    public function accounts()
+    {
+        return $this->hasMany(Account::class, 'user_id');
+    }
 }

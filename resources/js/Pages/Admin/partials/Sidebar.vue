@@ -147,8 +147,8 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
-									<Link :href="route('admin.loans.types.index')"
-									:class="(route().current('admin.loans.types.index')) && '!text-teal-300'"
+									<Link :href="route('admin.loans.create')"
+									:class="(route().current('admin.loans.create')) && '!text-teal-300'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add Application</span>

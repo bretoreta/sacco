@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('loans', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->id();
-            $table->string('loan_type');
-            $table->string('loan_description');
-            $table->float('min_amount');
-            $table->float('max_amount');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+            $table->foreignId('account_type_id')->nullable()->constrained('account_types')->nullOnDelete();
+            $table->enum('status', ['active', 'frozen']);
+            $table->float('available_balance');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('loans');
+        Schema::dropIfExists('accounts');
     }
 };

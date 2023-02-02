@@ -28,6 +28,10 @@ class UserFactory extends Factory
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'id_number' => $this->faker->numberBetween(),
+            'phone_number' => '07' . $this->faker->numberBetween(),
+            'kra_tax_number' => 'AY011' . $this->faker->numberBetween(),
+            'address' => $this->faker->streetAddress(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,

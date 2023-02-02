@@ -17,6 +17,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         // Manage Applied User Loans
         Route::get('/', [LoansController::class, 'index'])->name('admin.loans.index');
         Route::post('/', [LoansController::class, 'store'])->name('admin.loans.store');
+        Route::get('/create', [LoansController::class, 'create'])->name('admin.loans.create');
         Route::put('/{loan:uuid}', [LoansController::class, 'update'])->name('admin.loans.update');
         Route::delete('/{loan}/delete', [LoansController::class, 'delete'])->name('admin.loans.delete');
         Route::get('/approve', [LoansController::class, 'approve'])->name('admin.loans.approve');

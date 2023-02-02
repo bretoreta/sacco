@@ -13,7 +13,7 @@ class LoansRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return request()->user()->hasRole('admin');
     }
 
     /**
@@ -24,7 +24,12 @@ class LoansRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'user.id' => 'required|integer|exists:users,id',
+            'loan.id' => 'required|integer|exists:loans,id',
+            'plan.id' => 'required|integer|exists:plans,id',
+            'plan.interest_rate' => 'required|integer|max:100',
+            'plan.repayment_months' => 'required|integer',
+            'amount_payable' => 'required|integer',
         ];
     }
 }

@@ -93,7 +93,7 @@ const deleteLoan = (uuid) => {
 </script>
 
 <template>
-    <AdminLayout title="Manage Loans">
+    <AdminLayout title="Approve Loans">
         <div class="py-6 md:py-12">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-12 gap-5 px-4">

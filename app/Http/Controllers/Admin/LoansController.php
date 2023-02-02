@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Actions\Admin\Loans\ApproveLoan;
+use App\Actions\Admin\Loans\CreateLoan;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\LoansRequest;
 use App\Models\Loan;
 use App\Models\LoanUser;
 use App\Models\Plan;
+use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 use Spatie\QueryBuilder\QueryBuilder;
 
@@ -18,6 +24,28 @@ class LoansController extends Controller
             'loans' => QueryBuilder::for(LoanUser::with(['user:id,name,id_number,phone_number', 'loan:id,loan_type','plan'])->latest())
                                 ->paginate()
                                 ->appends(request()->query()),
+        ]);
+    }
+
+    public function create()
+    {
+        return Inertia::render('Admin/Loans/Create', [
+            'plans' => Plan::all(['id', 'name', 'interest_rate', 'repayment_months']),
+            'loan_types' => Loan::all(['id', 'loan_type']),
+            'users' => User::all(['id', 'name', 'id_number']),
+            'loans' => LoanUser::all(['uuid', 'status']),
+        ]);
+    }
+
+    public function store(LoansRequest $request)
+    {
+        $data = $request->validated();
+
+        CreateLoan::hanlde($data);
+
+        return back()->with('message', [
+            'type' => 'success',
+            'message' => 'Loan application has been added successfully'
         ]);
     }
 
@@ -49,12 +77,22 @@ class LoansController extends Controller
 
     public function approveLoan(LoanUser $loan)
     {
-        $loan->status = 'approved';
-        $loan->save();
+        $account = $loan->user->accounts()
+        ->whereRelation('account_type', 'name', '=', 'General Account')
+        ->where('status', 'active')->first();
+        if($account)
+        {
+            ApproveLoan::handle($account, $loan);
+
+            return back()->with('message', [
+                'type' => 'success',
+                'message' => 'Loan application has been approved successfully'
+            ]);
+        }
 
         return back()->with('message', [
-            'type' => 'success',
-            'message' => 'Loan application has been approved successfully'
+            'type' => 'error',
+            'message' => 'This user does not have a general account. Please open an account first'
         ]);
     }
 
