@@ -21,7 +21,7 @@ class ApproveLoan {
                 'actor_id' => request()->user()->id,
                 'type' => 'debit',
                 'for' => 'loan_disbursement',
-                'amount' => -$loan->amount_payable,
+                'amount' => $loan->amount_payable,
                 'comments' => 'Loan disbursed successfully',
             ]);
         });

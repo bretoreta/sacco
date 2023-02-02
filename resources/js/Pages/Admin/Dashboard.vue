@@ -3,112 +3,112 @@ import AdminLayout from '@/Layouts/AdminLayout.vue';
 import { reactive } from '@vue/reactivity';
 
 const chartData = reactive({
-    data: {      
-          series: [{
+    data: {
+        series: [{
             name: 'series1',
             data: [31, 40, 28, 51, 42, 109, 100]
-          }],
-          chartOptions: {
+        }],
+        chartOptions: {
             chart: {
-              height: 350,
-              type: 'area',
-              sparkline: {
-                enabled: true
-              },
+                height: 350,
+                type: 'area',
+                sparkline: {
+                    enabled: true
+                },
             },
             dataLabels: {
-              enabled: false
+                enabled: false
             },
             stroke: {
-              curve: 'smooth'
+                curve: 'smooth'
             },
             xaxis: {
-              type: 'datetime',
-              categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+                type: 'datetime',
+                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
             },
             tooltip: {
                 enabled: false
             },
-          },   
         },
-    data3: {      
+    },
+    data3: {
         series: [{
-        name: 'series1',
-        data: [76, 51, 22, 109, 42, 28, 31]
+            name: 'series1',
+            data: [76, 51, 22, 109, 42, 28, 31]
         }],
         chartOptions: {
-        chart: {
-            height: 350,
-            type: 'area',
-            sparkline: {
-            enabled: true
+            chart: {
+                height: 350,
+                type: 'area',
+                sparkline: {
+                    enabled: true
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                curve: 'smooth'
+            },
+            xaxis: {
+                type: 'datetime',
+                categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
+            },
+            tooltip: {
+                enabled: false
             },
         },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            curve: 'smooth'
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-        },
-        tooltip: {
-            enabled: false
-        },
-        },   
     },
     data2: {
-        
+
         series: [
             {
                 name: 'Net Profit',
                 data: [44, 55, 57, 56, 61, 58, 63]
-            }, 
+            },
             {
                 name: 'Revenue',
                 data: [76, 85, 101, 98, 87, 105, 91]
             }
         ],
         chartOptions: {
-        chart: {
-            type: 'bar',
-            height: 350
-        },
-        plotOptions: {
-            bar: {
-                horizontal: false,
-                columnWidth: '55%',
-                endingShape: 'rounded'
+            chart: {
+                type: 'bar',
+                height: 350
             },
-        },
-        dataLabels: {
-            enabled: false
-        },
-        stroke: {
-            show: true,
-            width: 2,
-            colors: ['transparent']
-        },
-        xaxis: {
-            categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
-        },
-        yaxis: {
-            title: {
-                text: 'USD'
-            }
-        },
-        fill: {
-            opacity: 1
-        },
-        tooltip: {
-            y: {
-                formatter: function (val) {
-                    return val + ' ' + 'USD'
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                    columnWidth: '55%',
+                    endingShape: 'rounded'
+                },
+            },
+            dataLabels: {
+                enabled: false
+            },
+            stroke: {
+                show: true,
+                width: 2,
+                colors: ['transparent']
+            },
+            xaxis: {
+                categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            },
+            yaxis: {
+                title: {
+                    text: 'USD'
+                }
+            },
+            fill: {
+                opacity: 1
+            },
+            tooltip: {
+                y: {
+                    formatter: function (val) {
+                        return val + ' ' + 'USD'
+                    }
                 }
             }
-        }
         },
     }
 })
@@ -199,12 +199,14 @@ const chartData = reactive({
                 </div>
                 <div class="grid grid-cols-12 gap-5 px-0 my-16">
                     <div class="col-span-12 md:col-span-8">
-                        <div class="bg-white border border-gray-200 rounded-md shadow-md px-4 lg:px-10 pb-5 lg:pb-10 pt-0 lg:pt-5">
+                        <div
+                            class="bg-white border border-gray-200 rounded-md shadow-md px-4 lg:px-10 pb-5 lg:pb-10 pt-0 lg:pt-5">
                             <div class="p-5 text-lg font-bold text-left text-gray-900 bg-white">
                                 Earnings This Week
                             </div>
                             <div id="chart">
-                                <apexchart type="bar" height="450" :options="chartData.data2.chartOptions" :series="chartData.data2.series"></apexchart>
+                                <apexchart type="bar" height="450" :options="chartData.data2.chartOptions"
+                                    :series="chartData.data2.series"></apexchart>
                             </div>
                         </div>
                     </div>
@@ -212,28 +214,37 @@ const chartData = reactive({
                         <div class="bg-white border border-gray-200 rounded-md shadow-md overflow-hidden">
                             <div class="p-5 text-lg font-bold text-left text-gray-900 bg-white">
                                 Earnings
-                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of
+                                    Flowbite products designed to help you work and play, stay organized, get answers,
+                                    keep in touch, grow your business, and more.</p>
                             </div>
                             <div id="earnings-chart">
-                                <apexchart type="area" height="160" :options="chartData.data.chartOptions" :series="chartData.data.series"></apexchart>
+                                <apexchart type="area" height="160" :options="chartData.data.chartOptions"
+                                    :series="chartData.data.series"></apexchart>
                             </div>
                         </div>
                         <div class="bg-white border border-gray-200 rounded-md shadow-md overflow-hidden mt-4">
                             <div class="p-5 text-lg font-bold text-left text-gray-900 bg-white">
                                 Conversions
-                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+                                <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of
+                                    Flowbite products designed to help you work and play, stay organized, get answers,
+                                    keep in touch, grow your business, and more.</p>
                             </div>
                             <div id="conversions-chart">
-                                <apexchart type="area" height="160" :options="chartData.data3.chartOptions" :series="chartData.data3.series"></apexchart>
+                                <apexchart type="area" height="160" :options="chartData.data3.chartOptions"
+                                    :series="chartData.data3.series"></apexchart>
                             </div>
                         </div>
                     </div>
                     <div class="col-span-12 md:col-span-6">
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500">
-                                <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                                <caption
+                                    class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                                     Pending Applications
-                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list
+                                        of Flowbite products designed to help you work and play, stay organized, get
+                                        answers, keep in touch, grow your business, and more.</p>
                                 </caption>
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
@@ -269,7 +280,8 @@ const chartData = reactive({
                                             $2999
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                     <tr class="bg-white border-b hover:bg-gray-50">
@@ -286,7 +298,8 @@ const chartData = reactive({
                                             $1999
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                     <tr class="bg-white hover:bg-gray-50">
@@ -303,7 +316,8 @@ const chartData = reactive({
                                             $99
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -313,9 +327,12 @@ const chartData = reactive({
                     <div class="col-span-12 md:col-span-6">
                         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                             <table class="w-full text-sm text-left text-gray-500">
-                                <caption class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
+                                <caption
+                                    class="p-5 text-lg font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
                                     Recent Repayments
-                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
+                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list
+                                        of Flowbite products designed to help you work and play, stay organized, get
+                                        answers, keep in touch, grow your business, and more.</p>
                                 </caption>
                                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                     <tr>
@@ -351,7 +368,8 @@ const chartData = reactive({
                                             $2999
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                     <tr class="bg-white border-b hover:bg-gray-50">
@@ -368,7 +386,8 @@ const chartData = reactive({
                                             $1999
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                     <tr class="bg-white hover:bg-gray-50">
@@ -385,7 +404,8 @@ const chartData = reactive({
                                             $99
                                         </td>
                                         <td class="px-6 py-4 text-right">
-                                            <a href="#" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+                                            <a href="#"
+                                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
                                         </td>
                                     </tr>
                                 </tbody>

@@ -23,4 +23,14 @@ class Transaction extends Model
         'amount',
         'comments',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function actor()
+    {
+        return $this->belongsTo(User::class, 'actor_id');
+    }
 }

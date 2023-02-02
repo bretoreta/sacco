@@ -106,12 +106,17 @@
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Member Accounts</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Disbursement</span>
 									</Link>
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Admin Accounts</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Repayment</span>
+									</Link>
+									<Link :href="'/admin/dashboard'"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Contributions</span>
 									</Link>
 								</ul>
 							</div>
