@@ -31,7 +31,7 @@ class LoansController extends Controller
     {
         return Inertia::render('Admin/Loans/Create', [
             'plans' => Plan::all(['id', 'name', 'interest_rate', 'repayment_months']),
-            'loan_types' => Loan::all(['id', 'loan_type']),
+            'loan_types' => Loan::all(['id', 'loan_type', 'min_amount', 'max_amount']),
             'users' => User::all(['id', 'name', 'id_number']),
             'loans' => LoanUser::all(['uuid', 'status']),
         ]);
@@ -41,12 +41,29 @@ class LoansController extends Controller
     {
         $data = $request->validated();
 
-        CreateLoan::hanlde($data);
+        if($data['loan']['min_amount'] > $data['amount_payable'])
+        {
+            return back()->withInput()->with('message', [
+                'type' => 'error',
+                'message' => "Minumum amount allowed for this loan is Ksh. {$data['loan']['min_amount']}"
+            ]);
+        }
+        else if($data['loan']['max_amount'] < $data['amount_payable'])
+        {
+            return back()->withInput()->with('message', [
+                'type' => 'error',
+                'message' => "Maximum amount allowed for this loan is Ksh. {$data['loan']['max_amount']}"
+            ]);
+        }
+        else {
+            CreateLoan::handle($data);
+    
+            return back()->with('message', [
+                'type' => 'success',
+                'message' => 'Loan application has been added successfully'
+            ]);
+        }
 
-        return back()->with('message', [
-            'type' => 'success',
-            'message' => 'Loan application has been added successfully'
-        ]);
     }
 
     public function update(Request $request, LoanUser $loan)

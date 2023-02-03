@@ -5,7 +5,7 @@ namespace App\Actions\Admin\Loans;
 use App\Models\LoanUser;
 
 class CreateLoan {
-    public static function hanlde($data)
+    public static function handle($data)
     {
         LoanUser::create([
             'user_id' => $data['user']['id'],
