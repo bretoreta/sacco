@@ -75,9 +75,9 @@
 						</SidebarLinkGroup>
 
 						<!-- Transactions -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.transactions.index')">
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.transactions.*')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
-								:class="(route().current('admin.transactions.index')) && 'hover:text-white'" href="#0"
+								:class="(route().current('admin.transactions.*')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
@@ -103,20 +103,29 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.transactions.disbursements.index')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.transactions.disbursements.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Disbursement</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.transactions.repayments.index')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.transactions.repayments.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Repayment</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.transactions.contributions.index')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.transactions.contributions.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Contributions</span>
+									</Link>
+									<Link :href="route('admin.transactions.deposits.index')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.transactions.deposits.index')) && '!text-teal-300'">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Deposits</span>
 									</Link>
 								</ul>
 							</div>
@@ -129,7 +138,7 @@
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
-										<svg xmlns="http://www.w3.org/2000/svg" :fill="(route().current('admin.loans.*')) && 'rgb(94 234 212)'" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+										<svg xmlns="http://www.w3.org/2000/svg" :fill="route().current('admin.loans.*') ? 'rgb(94 234 212)' : 'none'" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
 											<path :class="(route().current('admin.loans.*')) && '!text-teal-300'" stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
 											<path :class="(route().current('admin.loans.*')) && '!text-teal-300'" stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
 										</svg>
@@ -206,12 +215,69 @@
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add Member</span>
+									</Link>
+									<Link :href="'/admin/dashboard'"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Members</span>
 									</Link>
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Settings</span>
+									</Link>
+								</ul>
+							</div>
+						</SidebarLinkGroup>
+
+						<!-- Accounts -->
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.accounts.index')">
+							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
+								:class="(route().current('admin.accounts.index')) && 'hover:text-white'" href="#0"
+								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
+								<div class="flex items-center justify-between">
+									<div class="flex items-center">
+										<svg v-if="route().current('admin.accounts.*')" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-teal-300">
+											<path fill-rule="evenodd" d="M7.5 5.25a3 3 0 013-3h3a3 3 0 013 3v.205c.933.085 1.857.197 2.774.334 1.454.218 2.476 1.483 2.476 2.917v3.033c0 1.211-.734 2.352-1.936 2.752A24.726 24.726 0 0112 15.75c-2.73 0-5.357-.442-7.814-1.259-1.202-.4-1.936-1.541-1.936-2.752V8.706c0-1.434 1.022-2.7 2.476-2.917A48.814 48.814 0 017.5 5.455V5.25zm7.5 0v.09a49.488 49.488 0 00-6 0v-.09a1.5 1.5 0 011.5-1.5h3a1.5 1.5 0 011.5 1.5zm-3 8.25a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" />
+											<path d="M3 18.4v-2.796a4.3 4.3 0 00.713.31A26.226 26.226 0 0012 17.25c2.892 0 5.68-.468 8.287-1.335.252-.084.49-.189.713-.311V18.4c0 1.452-1.047 2.728-2.523 2.923-2.12.282-4.282.427-6.477.427a49.19 49.19 0 01-6.477-.427C4.047 21.128 3 19.852 3 18.4z" />
+										</svg>
+										<svg v-else xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path stroke-linecap="round" stroke-linejoin="round" d="M20.25 14.15v4.25c0 1.094-.787 2.036-1.872 2.18-2.087.277-4.216.42-6.378.42s-4.291-.143-6.378-.42c-1.085-.144-1.872-1.086-1.872-2.18v-4.25m16.5 0a2.18 2.18 0 00.75-1.661V8.706c0-1.081-.768-2.015-1.837-2.175a48.114 48.114 0 00-3.413-.387m4.5 8.006c-.194.165-.42.295-.673.38A23.978 23.978 0 0112 15.75c-2.648 0-5.195-.429-7.577-1.22a2.016 2.016 0 01-.673-.38m0 0A2.18 2.18 0 013 12.489V8.706c0-1.081.768-2.015 1.837-2.175a48.111 48.111 0 013.413-.387m7.5 0V5.25A2.25 2.25 0 0013.5 3h-3a2.25 2.25 0 00-2.25 2.25v.894m7.5 0a48.667 48.667 0 00-7.5 0M12 12.75h.008v.008H12v-.008z" />
+										</svg>
+										<span
+											class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Accounts</span>
+									</div>
+									<div class="flex shrink-0 ml-2">
+										<svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
+											:class="parentLink.expanded && 'rotate-180'" viewBox="0 0 12 12">
+											<path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+										</svg>
+									</div>
+								</div>
+							</a>
+							<div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
+								<ul class="pl-9 mt-1" :class="!parentLink.expanded && 'hidden'">
+									<Link :href="route('admin.accounts.index')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.index')) && '!text-teal-300'">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
+									</Link>
+									<Link :href="'/admin/dashboard'"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">General</span>
+									</Link>
+									<Link :href="'/admin/dashboard'"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Savings</span>
+									</Link>
+									<Link :href="'/admin/dashboard'"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Contribution</span>
 									</Link>
 								</ul>
 							</div>

@@ -19,6 +19,7 @@ class ApproveLoan {
             Transaction::create([
                 'user_id' => $loan->user_id,
                 'actor_id' => request()->user()->id,
+                'account_uuid' => $account->uuid,
                 'type' => 'debit',
                 'for' => 'loan_disbursement',
                 'amount' => $loan->amount_payable,

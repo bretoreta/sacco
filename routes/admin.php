@@ -34,11 +34,21 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('/transactions')->group(function() {
         // Manage Transactions
         Route::get('/', [TransactionsController::class, 'index'])->name('admin.transactions.index');
+        Route::get('/disbursements', [TransactionsController::class, 'disbursements'])->name('admin.transactions.disbursements.index');
+        Route::get('/repayments', [TransactionsController::class, 'repayments'])->name('admin.transactions.repayments.index');
+        Route::get('/contributions', [TransactionsController::class, 'contributions'])->name('admin.transactions.contributions.index');
+        Route::get('/deposits', [TransactionsController::class, 'deposits'])->name('admin.transactions.deposits.index');
     });
 
     Route::prefix('/members')->group(function() {
         // Manage Members
         Route::get('/', [MembersController::class, 'index'])->name('admin.members.index');
+        Route::get('/create', [MembersController::class, 'create'])->name('admin.members.create');
+    });
+
+    Route::prefix('/accounts')->group(function() {
+        // Manage Accounts
+        Route::get('/', [AccountsController::class, 'index'])->name('admin.accounts.index');
     });
 
     Route::prefix('/meetings')->group(function() {

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
             RolesSeeder::class,
             LoanSeeder::class,
             PlanSeeder::class,
+            AccountTypesSeeder::class,
         ]);
     }
 }

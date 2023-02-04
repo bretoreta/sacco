@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid()->primary();
             $table->foreignId('user_id')->nullable()->constrained('users')->nullOnDelete();
             $table->foreignId('actor_id')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignUuid('account_uuid')->nullable()->references('uuid')->on('accounts')->nullOnDelete();
             $table->enum('for', ['loan_disbursement', 'loan_repayment', 'contribution', 'deposit']);
             $table->enum('type', ['credit', 'debit']);
             $table->float('amount');

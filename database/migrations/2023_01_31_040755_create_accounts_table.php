@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('accounts', function (Blueprint $table) {
-            $table->id();
+            $table->uuid()->primary();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->foreignId('account_type_id')->nullable()->constrained('account_types')->nullOnDelete();
             $table->enum('status', ['active', 'frozen']);

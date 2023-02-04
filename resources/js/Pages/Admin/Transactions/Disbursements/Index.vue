@@ -1,5 +1,4 @@
 <script setup>
-import { onBeforeMount, reactive, ref } from 'vue';
 import { usePage } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import Pagination from '@/Components/Pagination.vue';
@@ -7,80 +6,9 @@ import DialogModal from '@/Components/DialogModal.vue';
 
 const pageprops = defineProps({
     transactions: Object,
-    loan_disbursements_sum: Number,
-    loan_repayments_sum: Number,
-    contributions_sum: Number,
-    deposits_sum: Number,
 });
 
 const NumberFormat = Intl.NumberFormat(undefined, { style: 'currency', currency: 'KSH' });
-const data = ref([]);
-const categories = ref([]);
-
-const chartOptions = reactive({
-    series: [{
-        name: 'Transacted',
-        data: data.value
-    }],
-    data: {
-        chart: {
-            type: 'area',
-            stacked: false,
-            height: 350,
-            toolbar: {
-                autoSelected: 'zoom'
-            }
-        },
-        dataLabels: {
-            enabled: false
-        },
-        markers: {
-            size: 0,
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                shadeIntensity: 1,
-                inverseColors: false,
-                opacityFrom: 0.7,
-                opacityTo: 0,
-                stops: [0, 50, 100]
-            },
-        },
-        yaxis: {
-            labels: {
-                formatter: function (val) {
-                    return 'KSH ' + val;
-                },
-            },
-        },
-        xaxis: {
-            type: 'datetime',
-            categories: categories.value,
-            tickAmount: 10,
-            labels: {
-                formatter: function (value, timestamp, opts) {
-                    return opts.dateFormatter(new Date(timestamp), 'dd MMM')
-                }
-            }
-        },
-        tooltip: {
-            shared: false,
-            y: {
-                formatter: function (val) {
-                    return 'KSH ' + val
-                }
-            }
-        }
-    }
-});
-
-onBeforeMount(() => {
-    for (var i = 0; i < pageprops.transactions.data.length; i++) {
-        data.value[i] = pageprops.transactions.data[i].amount;
-        categories.value[i] = pageprops.transactions.data[i].created_at;
-    }
-})
 
 const bannerTimeout = () => {
     setTimeout(() => {
@@ -90,24 +18,15 @@ const bannerTimeout = () => {
 </script>
 
 <template>
-    <AdminLayout title="Transactions Overview">
+    <AdminLayout title="Disbursement Transactions Overview">
         <div class="py-6 md:py-12">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-12 gap-5 px-4">
-                    <div class="col-span-12">
-                        <div class="py-3">
-                            <h4 class="text-3xl font-bold text-gray-700">Transactions Overview</h4>
-                        </div>
-                        <div>
-                            <div id="chart" class="py-8">
-                                <apexchart type="area" height="350" :options="chartOptions.data"
-                                    :series="chartOptions.series">
-                                </apexchart>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-span-12 my-5">
-                        <div class="grid grid-cols-4 gap-4">
+                        <div class="py-3">
+                            <h4 class="text-3xl font-bold text-gray-700">Disbursement Transactions Overview</h4>
+                        </div>
+                        <!-- <div class="grid grid-cols-4 gap-4">
                             <div class="col-span-1">
                                 <div class="bg-blue-500 rounded-lg shadow-md border border-blue-300 p-6">
                                     <p class="text-white font-bold text-xs uppercase">Loan Disbursements Usage</p>
@@ -140,11 +59,11 @@ const bannerTimeout = () => {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="col-span-12">
                         <div class="p-5 text-lg sm:rounded-t-xl font-semibold text-left text-gray-900 bg-white dark:text-white dark:bg-gray-800">
-                            Browse Transactions
+                            Browse Disbursement Transactions
                             <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Browse a list of Flowbite products designed to help you work and play, stay organized, get answers, keep in touch, grow your business, and more.</p>
                         </div>
                         <div class="relative overflow-x-auto">
