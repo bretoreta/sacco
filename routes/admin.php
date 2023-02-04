@@ -44,6 +44,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         // Manage Members
         Route::get('/', [MembersController::class, 'index'])->name('admin.members.index');
         Route::get('/create', [MembersController::class, 'create'])->name('admin.members.create');
+        Route::put('/{user}/update', [MembersController::class, 'update'])->name('admin.members.update');
+
+        Route::post('/{user}/verify', [MembersController::class, 'verify'])->name('admin.members.verify');
+        Route::post('/{user}/unverify', [MembersController::class, 'unverify'])->name('admin.members.unverify');
     });
 
     Route::prefix('/accounts')->group(function() {

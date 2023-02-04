@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -63,6 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $appends = [
         'profile_photo_url',
+        'created',
     ];
 
     public function loans()
@@ -76,5 +78,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function accounts()
     {
         return $this->hasMany(Account::class, 'user_id');
+    }
+
+    public function getCreatedAttribute()
+    {
+        return Carbon::parse($this->created_at)->format('d M, Y');
     }
 }
