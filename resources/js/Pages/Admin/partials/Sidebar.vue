@@ -213,12 +213,14 @@
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
 									<Link :href="route('admin.members.create')"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.members.create')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add Member</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.members.manage')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.members.manage')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Members</span>
 									</Link>

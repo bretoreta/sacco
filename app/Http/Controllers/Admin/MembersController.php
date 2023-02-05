@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\StoreMemberRequest;
 use App\Http\Requests\Admin\UpdateMemberRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Inertia\Inertia;
 
 class MembersController extends Controller
@@ -13,6 +15,10 @@ class MembersController extends Controller
     public function index()
     {
         return Inertia::render('Admin/Members/Index', [
+            'all_count' => User::all()->count(),
+            'admins_count' => User::role('admin')->count(),
+            'members_count' => User::role('member')->count(),
+            'employees_count' => User::role('employee')->count(),
             'members' => User::role('member')
                                 ->latest()
                                 ->paginate()
@@ -27,6 +33,38 @@ class MembersController extends Controller
             'admins_count' => User::role('admin')->count(),
             'members_count' => User::role('member')->count(),
             'employees_count' => User::role('employee')->count(),
+        ]);
+    }
+
+    public function manage()
+    {
+        return Inertia::render('Admin/Members/Manage', [
+            'members' => User::role('member')
+                                ->latest()
+                                ->paginate()
+                                ->appends(request()->query())
+        ]);
+    }
+
+    public function store(StoreMemberRequest $request)
+    {
+        $data = $request->validated();
+
+        $user = User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'id_number' => $data['id_number'],
+            'phone_number' => $data['phone_number'],
+            'kra_tax_number' => $data['kra_tax_number'],
+            'address' => $data['address'],
+            'password' => Hash::make('password'),
+        ]);
+
+        $user->assignRole('member');
+
+        return back()->with('message', [
+            'type' => 'success',
+            'message' => 'Member Account Has Been Created Successfully. The default password is "password"'
         ]);
     }
 

@@ -43,6 +43,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('/members')->group(function() {
         // Manage Members
         Route::get('/', [MembersController::class, 'index'])->name('admin.members.index');
+        Route::post('/', [MembersController::class, 'store'])->name('admin.members.store');
+        Route::get('/manage', [MembersController::class, 'manage'])->name('admin.members.manage');
         Route::get('/create', [MembersController::class, 'create'])->name('admin.members.create');
         Route::put('/{user}/update', [MembersController::class, 'update'])->name('admin.members.update');
 
