@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AccountsController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoanTypesController;

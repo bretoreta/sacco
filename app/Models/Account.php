@@ -19,4 +19,9 @@ class Account extends Model
     {
         return $this->belongsTo(AccountType::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

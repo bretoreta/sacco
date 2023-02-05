@@ -24,5 +24,10 @@ class AccountTypesSeeder extends Seeder
             'name' => 'Contribution Account',
             'description' => 'Account for contribution purposes',
         ]);
+
+        AccountType::create([
+            'name' => 'Savings Account',
+            'description' => 'Account for savings purposes',
+        ]);
     }
 }
