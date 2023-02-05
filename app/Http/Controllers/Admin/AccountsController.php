@@ -7,7 +7,6 @@ use App\Http\Requests\Admin\StoreAccountRequest;
 use App\Models\Account;
 use App\Models\AccountType;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AccountsController extends Controller
@@ -18,7 +17,7 @@ class AccountsController extends Controller
             'all_count' => Account::all()->count(),
             'general_count' => Account::whereRelation('account_type', 'name', 'General Account')->count(),
             'savings_count' => Account::whereRelation('account_type', 'name', 'Savings Account')->count(),
-            'contributions_count' => Account::whereRelation('account_type', 'name', 'Contributions Account')->count(),
+            'contributions_count' => Account::whereRelation('account_type', 'name', 'Contribution Account')->count(),
             'accounts' => Account::with(['user:id,name,phone_number', 'account_type:id,name'])
                                 ->latest()
                                 ->paginate()
@@ -34,7 +33,7 @@ class AccountsController extends Controller
             'all_count' => Account::all()->count(),
             'general_count' => Account::whereRelation('account_type', 'name', 'General Account')->count(),
             'savings_count' => Account::whereRelation('account_type', 'name', 'Savings Account')->count(),
-            'contributions_count' => Account::whereRelation('account_type', 'name', 'Contributions Account')->count(),
+            'contributions_count' => Account::whereRelation('account_type', 'name', 'Contribution Account')->count(),
         ]);
     }
 

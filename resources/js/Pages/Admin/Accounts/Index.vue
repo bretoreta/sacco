@@ -104,7 +104,7 @@ const bannerTimeout = () => {
                                                 </div>
                                             </td>
                                             <td class="px-6 py-4 uppercase">
-                                                <button v-if="account.status = 'active'" class="px-2 py-1 rounded-md shadow-md bg-green-500 text-white uppercase text-xs font-bold">
+                                                <button v-if="account.status == 'active'" class="px-2 py-1 rounded-md shadow-md bg-green-500 text-white uppercase text-xs font-bold">
                                                     Active
                                                 </button>
                                                 <button v-else class="px-2 py-1 rounded-md shadow-md bg-gray-500 text-white uppercase text-xs font-bold">
