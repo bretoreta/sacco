@@ -32,6 +32,16 @@ class MembersController extends Controller
         ]);
     }
 
+    public function delete(User $user)
+    {
+        $user->delete();
+
+        return back()->with('message', [
+            'type' => 'success',
+            'message' => 'Member Account Has Been Deleted Successfully'
+        ]);
+    }
+
     public function verify(User $user)
     {
         $user->email_verified_at = now();

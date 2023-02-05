@@ -41,6 +41,7 @@ const editMember = (member) => {
 
 const submit = () => {
     form.put(route('admin.members.update', form.id), {
+        preserveScroll: true,
         onSuccess: () => {
             form.reset(),
             editingMember.value = false,
@@ -51,12 +52,25 @@ const submit = () => {
 
 const verifyUser = (id) => {
     router.post(route('admin.members.verify', id), {} , {
+        preserveScroll: true,
         onSuccess: () => {
             bannerTimeout()
         }
     })
 }
 
+const deleteUser = (id) => {
+    if(confirm("Are you sure to delete this user? All it's resources will be deleted!"))
+    {
+        router.delete(route('admin.members.delete', id),
+        { 
+            preserveScroll:true,
+            onSuccess: () => {
+                bannerTimeout()
+            }
+        })
+    }
+}
 const unverifyUser = (id) => {
     router.post(route('admin.members.unverify', id), {} , {
         onSuccess: () => {
@@ -176,7 +190,7 @@ const bannerTimeout = () => {
                                                     </TooltipMin>
                                                     <TooltipMin>
                                                         <template #button>
-                                                            <button @click="deleteLoanType(member.id)">
+                                                            <button @click="deleteUser(member.id)">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                     viewBox="0 0 24 24" stroke-width="1.5"
                                                                     stroke="currentColor" class="w-6 h-6 text-red-500">
