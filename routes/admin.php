@@ -56,6 +56,16 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('/accounts')->group(function() {
         // Manage Accounts
         Route::get('/', [AccountsController::class, 'index'])->name('admin.accounts.index');
+        Route::post('/', [AccountsController::class, 'store'])->name('admin.accounts.store');
+        Route::get('/create', [AccountsController::class, 'create'])->name('admin.accounts.create');
+        Route::put('/{account:uuid}/activate', [AccountsController::class, 'activate'])->name('admin.accounts.activate');
+        Route::put('/{account:uuid}/freeze', [AccountsController::class, 'freeze'])->name('admin.accounts.freeze');
+
+        // Manage Account Types
+        Route::get('/types/general/manage', [AccountsController::class, 'general'])->name('admin.accounts.manage.general');
+        Route::get('/types/savings/manage', [AccountsController::class, 'savings'])->name('admin.accounts.manage.savings');
+        Route::get('/types/contributions/manage', [AccountsController::class, 'contributions'])->name('admin.accounts.manage.contributions');
+        Route::get('/types/settings', [AccountsController::class, 'settings'])->name('admin.accounts.manage.settings');
     });
 
     Route::prefix('/meetings')->group(function() {

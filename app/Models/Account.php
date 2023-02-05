@@ -15,6 +15,13 @@ class Account extends Model
     public $incrementing = false;
     protected $table = 'accounts';
 
+    protected $fillable = [
+        'user_id',
+        'account_type_id',
+        'status',
+        'available_balance'
+    ];
+
     public function account_type()
     {
         return $this->belongsTo(AccountType::class);

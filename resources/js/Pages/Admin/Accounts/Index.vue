@@ -24,6 +24,9 @@ const bannerTimeout = () => {
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-12 gap-5 px-4">
                     <div class="col-span-12 my-5">
+                        <div class="pb-10">
+                            <h4 class="text-3xl font-bold text-gray-700">Accounts Overview</h4>
+                        </div>
                         <div class="grid grid-cols-4 gap-4">
                             <div class="col-span-1">
                                 <div class="bg-blue-500 rounded-lg shadow-md border border-blue-300 p-6">

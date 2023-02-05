@@ -234,9 +234,9 @@
 						</SidebarLinkGroup>
 
 						<!-- Accounts -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.accounts.index')">
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.accounts.*')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
-								:class="(route().current('admin.accounts.index')) && 'hover:text-white'" href="#0"
+								:class="(route().current('admin.accounts.*')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
@@ -266,20 +266,35 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.accounts.create')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.create')) && '!text-teal-300'">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">General</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Open Account</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.accounts.manage.general')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.manage.general')) && '!text-teal-300'">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Savings</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">General Accounts</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
+									<Link :href="route('admin.accounts.manage.savings')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.manage.savings')) && '!text-teal-300'">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Contribution</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Savings Accounts</span>
+									</Link>
+									<Link :href="route('admin.accounts.manage.contributions')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.manage.contributions')) && '!text-teal-300'">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Contribution Accounts</span>
+									</Link>
+									<Link :href="route('admin.accounts.manage.settings')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.accounts.manage.settings')) && '!text-teal-300'">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Settings</span>
 									</Link>
 								</ul>
 							</div>
