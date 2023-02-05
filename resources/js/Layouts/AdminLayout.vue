@@ -15,7 +15,7 @@
 				<slot></slot>
 			</main>
 
-			<div class="flex w-full items-center justify-center pb-10">
+			<div class="flex w-full items-center justify-center py-10">
 				<p class="uppercase text-gray-400 text-xs font-bold">Made with ❤ By Inkpot LLC</p>
 			</div>
 

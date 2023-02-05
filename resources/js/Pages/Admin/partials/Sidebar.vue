@@ -37,9 +37,9 @@
 					</h3>
 					<ul class="mt-3">
 						<!-- Dashboard -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.dashboard.index')">
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.dashboard.*')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
-								:class="(route().current('admin.dashboard.index')) && 'hover:text-white'" href="#0"
+								:class="(route().current('admin.dashboard.*')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
@@ -184,9 +184,9 @@
 						</SidebarLinkGroup>
 
 						<!-- Members -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.members.index')">
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.members.*')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
-								:class="(route().current('admin.members.index')) && 'hover:text-white'" href="#0"
+								:class="(route().current('admin.members.*')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
@@ -212,7 +212,7 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
-									<Link :href="'/admin/dashboard'"
+									<Link :href="route('admin.members.create')"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Add Member</span>

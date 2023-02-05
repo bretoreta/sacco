@@ -20,6 +20,16 @@ class MembersController extends Controller
         ]);
     }
 
+    public function create()
+    {
+        return Inertia::render('Admin/Members/Create', [
+            'all_count' => User::all()->count(),
+            'admins_count' => User::role('admin')->count(),
+            'members_count' => User::role('member')->count(),
+            'employees_count' => User::role('employee')->count(),
+        ]);
+    }
+
     public function update(UpdateMemberRequest $request, User $user)
     {
         $data = $request->validated();
