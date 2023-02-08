@@ -1,17 +1,12 @@
 <script setup>
-import { reactive, ref } from 'vue';
 import { useForm, usePage } from '@inertiajs/vue3';
 import { router } from "@inertiajs/vue3";
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
-import TooltipMin from '@/Components/TooltipMin.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
-import TextArea from '@/Components/TextArea.vue';
-import Pagination from '@/Components/Pagination.vue';
-import DialogModal from '@/Components/DialogModal.vue';
-import Multiselect from '@suadelabs/vue3-multiselect'
+import Multiselect from '@suadelabs/vue3-multiselect';
 
 defineProps({
     users: Object,

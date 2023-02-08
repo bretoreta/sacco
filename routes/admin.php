@@ -71,6 +71,9 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('/meetings')->group(function() {
         // Manage meetings
         Route::get('/', [MeetingsController::class, 'index'])->name('admin.meetings.index');
+        Route::post('/', [MeetingsController::class, 'store'])->name('admin.meetings.store');
+        Route::get('/create', [MeetingsController::class, 'create'])->name('admin.meetings.create');
+        Route::get('/manage', [MeetingsController::class, 'manage'])->name('admin.meetings.manage');
     });
 
     Route::prefix('/legals')->group(function() {

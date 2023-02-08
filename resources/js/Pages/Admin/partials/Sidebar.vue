@@ -301,9 +301,9 @@
 						</SidebarLinkGroup>
 
 						<!-- Meetings -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.meetings.index')">
+						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.meetings.*')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
-								:class="(route().current('admin.meetings.index')) && 'hover:text-white'" href="#0"
+								:class="(route().current('admin.meetings.*')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
@@ -332,6 +332,12 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
 									</Link>
+									<Link :href="route('admin.meetings.create')"
+										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
+										:class="(route().current('admin.meetings.create')) && '!text-teal-300'">
+									<span
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Schedule Meeting</span>
+									</Link>
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
@@ -346,15 +352,14 @@
 							</div>
 						</SidebarLinkGroup>
 
-						<!-- Legal Docs TODO: Make Stroke Change To Teal -->
 						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.legals.index')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
 								:class="(route().current('admin.legals.index')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
 								<div class="flex items-center justify-between">
 									<div class="flex items-center">
-										<svg xmlns="http://www.w3.org/2000/svg" :fill="(route().current('admin.legals.*')) && 'rgb(94 234 212)'" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-											<path :class="(route().current('admin.meetings.*')) && '!text-teal-300'" stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
+										<svg xmlns="http://www.w3.org/2000/svg" :fill="route().current('admin.legals.*') ? 'rgb(94 234 212)' : 'none'" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+											<path :class="(route().current('admin.legals.*')) && '!text-teal-300'" stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0012 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 01-2.031.352 5.988 5.988 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0l2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 01-2.031.352 5.989 5.989 0 01-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971z" />
 										</svg>
 										<span
 											class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Legal Docs</span>
