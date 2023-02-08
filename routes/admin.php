@@ -74,6 +74,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::post('/', [MeetingsController::class, 'store'])->name('admin.meetings.store');
         Route::get('/create', [MeetingsController::class, 'create'])->name('admin.meetings.create');
         Route::get('/manage', [MeetingsController::class, 'manage'])->name('admin.meetings.manage');
+        Route::put('/{meeting}/update', [MeetingsController::class, 'update'])->name('admin.meetings.update');
+        Route::delete('/{meeting}/delete', [MeetingsController::class, 'delete'])->name('admin.meetings.delete');
     });
 
     Route::prefix('/legals')->group(function() {

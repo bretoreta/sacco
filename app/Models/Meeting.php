@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,6 +20,11 @@ class Meeting extends Model
     ];
 
     protected $appends = ['created'];
+
+    protected $casts = [
+        'is_invite_only' => 'boolean',
+        'happening_on' => 'date:Y-m-d'
+    ];
 
     public function meeting_type()
     {
