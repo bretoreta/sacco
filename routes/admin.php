@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AccountsController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\DocumentsController;
 use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoanTypesController;
 use App\Http\Controllers\Admin\MeetingsController;
@@ -78,9 +79,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::delete('/{meeting}/delete', [MeetingsController::class, 'delete'])->name('admin.meetings.delete');
     });
 
-    Route::prefix('/legals')->group(function() {
+    Route::prefix('/docs')->group(function() {
         // Manage legal docs
-        Route::get('/', [LegalDocsController::class, 'index'])->name('admin.legals.index');
+        Route::get('/', [DocumentsController::class, 'index'])->name('admin.docs.index');
+        Route::post('/', [DocumentsController::class, 'store'])->name('admin.docs.store');
     });
 
     Route::prefix('/mailroom')->group(function() {
