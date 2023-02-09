@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from '@vue/reactivity';
-import { useForm, usePage } from '@inertiajs/vue3';
+import { router, useForm, usePage } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
 import TooltipMin from '@/Components/TooltipMin.vue';
 import DialogModal from '@/Components/DialogModal.vue';
@@ -22,6 +22,19 @@ const files = ref(null);
 const form = useForm({
     file: null,
 });
+
+const deleteDocument = (id) => {
+    if(confirm("Are you sure to delete this document? All it's resources will be deleted!"))
+    {
+        router.delete(route('admin.documents.delete', id),
+        { 
+            preserveScroll:true,
+            onSuccess: () => {
+                bannerTimeout()
+            }
+        })
+    }
+}
 
 const handleUpload = ($event) => {
     dragging.value = false;
@@ -108,7 +121,7 @@ const bannerTimeout = () => {
                                             <div>
                                                 <TooltipMin>
                                                     <template #button>
-                                                        <button @click="deleteDocument()">
+                                                        <button @click="deleteDocument(document.id)">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none"
                                                                 viewBox="0 0 24 24" stroke-width="1.5"
                                                                 stroke="currentColor" class="w-6 h-6 text-red-500">

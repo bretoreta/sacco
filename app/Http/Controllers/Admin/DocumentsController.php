@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Document;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 use Illuminate\Support\Str;
 
@@ -39,6 +40,18 @@ class DocumentsController extends Controller
 
         $directory = "documents/{$document->created_at->format('Y/m/d')}/{$document->id}";
         $file->storeAs($directory, $document->display_name, 'public');
+    }
+
+    public function delete(Document $document)
+    {
+        Storage::delete("documents/{$document->created_at->format('Y/m/d')}/{$document->id}/{$document->display_name}");
+
+        $document->delete();
+
+        return back()->with('message', [
+            'type' => 'success',
+            'message' => 'Document Has Been Deleted Successfully'
+        ]);
     }
 
     private function formatBytes($bytes, $precision = 2) { 

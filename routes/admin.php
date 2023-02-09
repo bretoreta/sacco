@@ -83,6 +83,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         // Manage legal docs
         Route::get('/', [DocumentsController::class, 'index'])->name('admin.docs.index');
         Route::post('/', [DocumentsController::class, 'store'])->name('admin.docs.store');
+        Route::delete('/{document}/delete', [DocumentsController::class, 'delete'])->name('admin.documents.delete');
     });
 
     Route::prefix('/mailroom')->group(function() {
