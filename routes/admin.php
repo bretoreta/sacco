@@ -101,3 +101,5 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/', [FeedbackController::class, 'index'])->name('admin.feedback.index');
     });
 });
+
+Route::get('/dashboard', [DocumentsController::class, 'index'])->name('dashboard');

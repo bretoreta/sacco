@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Document;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
@@ -26,31 +27,36 @@ class DocumentsController extends Controller
             'max' => 'File cannot be larger than 100MBs'
         ]);
 
-        $file = $request->file('file');
-        $string = Str::random();
+        if ($request->file('file')->isValid()) {
+            $path = $request->file('file')->storePublicly("documents/". Carbon::now()->format('Y/M'), ['disk' => config('filesystems.documents_disk', 'public')]);
+        }
 
-        $document = Document::create([
+        Document::create([
             'user_id' => auth()->id(),
-            'display_name' => $file->getClientOriginalName(),
-            'original_name' => $string,
-            'doctype' => $file->getMimeType(),
-            'docsize' => $this->formatBytes($file->getSize()),
-            'url' => env('APP_URL', 'http://127.0.0.1:8000/') . '/storage/documents/' . $string,
+            'display_name' => $request->file('file')->getClientOriginalName(),
+            'original_name' => $path,
+            'doctype' => $request->file('file')->getMimeType(),
+            'docsize' => $this->formatBytes($request->file('file')->getSize()),
+            'url' => env('APP_URL', 'http://127.0.0.1:8000/storage/') . $path,
         ]);
 
-        $directory = "documents/{$document->created_at->format('Y/m/d')}/{$document->id}";
-        $file->storeAs($directory, $document->display_name, 'public');
+        return response('Ok');
     }
 
     public function delete(Document $document)
     {
-        Storage::delete("documents/{$document->created_at->format('Y/m/d')}/{$document->id}/{$document->display_name}");
-
-        $document->delete();
-
+        if(Storage::disk(config('filesystems.documents_disk', 'public'))->delete($document->original_name ))
+        {
+            $document->delete();
+    
+            return back()->with('message', [
+                'type' => 'success',
+                'message' => 'Document Has Been Deleted Successfully'
+            ]);
+        }
         return back()->with('message', [
-            'type' => 'success',
-            'message' => 'Document Has Been Deleted Successfully'
+            'type' => 'error',
+            'message' => "We Couldn't Process Your Request. Please Try Again Later"
         ]);
     }
 
