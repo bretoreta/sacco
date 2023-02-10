@@ -112,7 +112,7 @@ const bannerTimeout = () => {
                                 </div>
                                 <div class="p-5 bg-gray-50">
                                     <div class="block">
-                                        <p class="text-gray-800 uppercase text-sm font-bold">{{ document.display_name }}</p>
+                                        <p class="text-gray-800 uppercase text-sm font-bold">{{ document.display_name.substr(0, 10) + '...' }}</p>
                                         <div class="py-2 flex items-center justify-between">
                                             <div class="flrx space-x-2">
                                                 <button class="bg-blue-500 rounded shadow-md text-white text-xs font-bold px-2 py-1">{{ document.docsize }}</button>
@@ -138,8 +138,7 @@ const bannerTimeout = () => {
                                         </div>
                                     </div>
                                     <div class="block mt-2">
-                                        <p class="text-xs italic font-bold text-gray-500">Uploaded By: {{ document.user.name }} on {{ document.created }}</p>
-                                        <!-- <p class="text-xs italic font-bold text-gray-500 mt-1">{{ document.url}}</p> -->
+                                        <p class="text-xs italic font-bold text-gray-500">Uploaded By: {{ document.user.name }} on {{ document.created_at }}</p>
                                     </div>
                                 </div>
                             </div>

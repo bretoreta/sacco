@@ -392,7 +392,7 @@
 						</SidebarLinkGroup>
 
 						<!-- Mailroom -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.mailroom.index')">
+						<!-- <SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.mailroom.index')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
 								:class="(route().current('admin.mailroom.index')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
@@ -441,7 +441,7 @@
 									</Link>
 								</ul>
 							</div>
-						</SidebarLinkGroup>
+						</SidebarLinkGroup> -->
 					</ul>
 					<h3 class="text-xs uppercase text-teal-300 font-semibold pl-3 mt-6">
 						<span class="hidden lg:block lg:sidebar-expanded:hidden 2xl:hidden text-center w-6"
@@ -481,22 +481,7 @@
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
 										:class="(route().current('admin.settings.index')) && '!text-teal-300'">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Overview</span>
-									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
-									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Projections</span>
-									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
-									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Performance</span>
-									</Link>
-									<Link :href="'/admin/dashboard'"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
-									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Settings</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Settings</span>
 									</Link>
 								</ul>
 							</div>
@@ -538,17 +523,17 @@
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Projections</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Bugs & Fixes</span>
 									</Link>
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Performance</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Recommendations</span>
 									</Link>
 									<Link :href="'/admin/dashboard'"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate">
 									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Settings</span>
+										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Complains</span>
 									</Link>
 								</ul>
 							</div>

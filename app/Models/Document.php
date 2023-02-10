@@ -9,6 +9,8 @@ class Document extends Model
 {
     use HasFactory;
 
+    protected $casts = ['created_at' => 'date:d M, Y'];
+
     protected $fillable = [
         'user_id',
         'display_name',
