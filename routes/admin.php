@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoanTypesController;
 use App\Http\Controllers\Admin\MeetingsController;
 use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TransactionsController;
 use Illuminate\Support\Facades\Route;
 

@@ -450,7 +450,7 @@
 					</h3>
 					<ul class="my-3">
 						<!-- Settings -->
-						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.settings.index')">
+						<!-- <SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.settings.index')">
 							<a class="block text-slate-200 hover:text-white truncate transition duration-200 py-2"
 								:class="(route().current('admin.settings.index')) && 'hover:text-white'" href="#0"
 								@click.prevent="sidebarExpanded ? parentLink.handleClick() : sidebarExpanded = true">
@@ -466,7 +466,6 @@
 										<span
 											class="text-sm font-medium ml-3 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">App Settings</span>
 									</div>
-									<!-- Icon -->
 									<div class="flex shrink-0 ml-2">
 										<svg class="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400"
 											:class="parentLink.expanded && 'rotate-180'" viewBox="0 0 12 12">
@@ -485,7 +484,7 @@
 									</Link>
 								</ul>
 							</div>
-						</SidebarLinkGroup>
+						</SidebarLinkGroup> -->
 
 						<!-- Feedback Hub -->
 						<SidebarLinkGroup v-slot="parentLink" :activeCondition="route().current('admin.feedback.index')">

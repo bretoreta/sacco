@@ -16,20 +16,18 @@ class SettingsSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'data' => json_encode(array(
-                [
-                    'loans' => [
-                        'loan_application_allowed' => false,
-                        'loan_application_max_users' => 100,
-                    ],
-                    'members' => [
-                        'member_application_allowed' => false,
-                    ],
-                    'accounts' => [
-                        'account_opening_allowed' => false,
-                    ],
-                ]
-            ))
+            'data' => [
+                'loans' => [
+                    'loan_application_allowed' => false,
+                    'loan_application_max_users' => 100,
+                ],
+                'members' => [
+                    'member_application_allowed' => false,
+                ],
+                'accounts' => [
+                    'account_opening_allowed' => false,
+                ],
+            ]
         ]);
     }
 }
