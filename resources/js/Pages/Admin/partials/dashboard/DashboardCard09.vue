@@ -23,7 +23,7 @@
 <script>
 import { ref } from 'vue'
 import Tooltip from '@/Components/Tooltip.vue'
-import BarChart from '@/Pages/charts/BarChart02.vue'
+import BarChart from '@/Pages/Admin/charts/BarChart02.vue'
 
 // Import utilities
 import { tailwindConfig } from '../../utils/Utils'

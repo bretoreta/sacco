@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col col-span-full sm:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
     <header class="px-5 py-4 border-b border-gray-100">
-      <h2 class="font-semibold text-gray-800">Direct VS Indirect</h2>
+      <h2 class="font-semibold text-gray-800">Loans Track</h2>
     </header>
     <!-- Chart built with Chart.js 3 -->
     <!-- Change the height attribute to adjust the chart height -->
@@ -30,7 +30,7 @@ export default {
       datasets: [
         // Light blue bars
         {
-          label: 'Direct',
+          label: 'Disbursement',
           data: [
             800, 1600, 900, 1300, 1950, 1700,
           ],
@@ -41,7 +41,7 @@ export default {
         },
         // Blue bars
         {
-          label: 'Indirect',
+          label: 'Repayment',
           data: [
             4900, 2600, 5350, 4800, 5200, 4800,
           ],

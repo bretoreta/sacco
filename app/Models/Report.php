@@ -1,0 +1,20 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Casts\AsCollection;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class Report extends Model
+{
+    use HasFactory;
+
+    protected $casts = ['data' => AsCollection::class];
+
+    protected $fillable = [
+        'user_id',
+        'short_desc',
+        'data'
+    ];
+}

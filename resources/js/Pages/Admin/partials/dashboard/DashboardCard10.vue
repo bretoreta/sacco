@@ -1,7 +1,7 @@
 <template>
   <div class="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
     <header class="px-5 py-4 border-b border-gray-100">
-      <h2 class="font-semibold text-gray-800">Top Affiliates</h2>
+      <h2 class="font-semibold text-gray-800">Top Mambers</h2>
     </header>
     <div class="p-3">
 
@@ -21,7 +21,7 @@
                 <div class="font-semibold text-left">Spent</div>
               </th>
               <th class="p-2 whitespace-nowrap">
-                <div class="font-semibold text-center">Country</div>
+                <div class="font-semibold text-center">Phone</div>
               </th>
             </tr>
           </thead>
@@ -46,7 +46,7 @@
                 <div class="text-left font-medium text-green-500">{{customer.spent}}</div>
               </td>
               <td class="p-2 whitespace-nowrap">
-                <div class="text-lg text-center">{{customer.location}}</div>
+                <div class="text-xs text-center">{{customer.phone}}</div>
               </td>
             </tr>
           </tbody>
@@ -61,11 +61,11 @@
 <script>
 import { ref } from 'vue'
 
-import Image01 from '../../../../img/user-36-05.jpg'
-import Image02 from '../../../../img/user-36-06.jpg'
-import Image03 from '../../../../img/user-36-07.jpg'
-import Image04 from '../../../../img/user-36-08.jpg'
-import Image05 from '../../../../img/user-36-09.jpg'
+import Image01 from '../../../../../img/user-36-05.jpg'
+import Image02 from '../../../../../img/user-36-05.jpg'
+import Image03 from '../../../../../img/user-36-07.jpg'
+import Image04 from '../../../../../img/user-36-08.jpg'
+import Image05 from '../../../../../img/user-36-09.jpg'
 
 export default {
   name: 'DashboardCard10',
@@ -76,40 +76,40 @@ export default {
         image: Image01,
         name: 'Alex Shatov',
         email: 'alexshatov@gmail.com',
-        location: '🇺🇸',
-        spent: '$2,890.66',
+        phone: '0790999876',
+        spent: 'Ksh. 20,890.66',
       },
       {
         id: '1',
         image: Image02,
         name: 'Philip Harbach',
         email: 'philip.h@gmail.com',
-        location: '🇩🇪',
-        spent: '$2,767.04',
+        phone: '0787533227',
+        spent: 'Ksh. 20,767.04',
       },
       {
         id: '2',
         image: Image03,
         name: 'Mirko Fisuk',
         email: 'mirkofisuk@gmail.com',
-        location: '🇫🇷',
-        spent: '$2,996.00',
+        phone: '0712543678',
+        spent: 'Ksh. 20,996.00',
       },
       {
         id: '3',
         image: Image04,
         name: 'Olga Semklo',
         email: 'olga.s@cool.design',
-        location: '🇮🇹',
-        spent: '$1,220.66',
+        phone: '0757663556',
+        spent: 'Ksh. 10,220.66',
       },
       {
         id: '4',
         image: Image05,
         name: 'Burak Long',
         email: 'longburak@gmail.com',
-        location: '🇬🇧',
-        spent: '$1,890.66',
+        phone: '0700534784',
+        spent: 'Ksh. 10,890.66',
       },      
     ])
 

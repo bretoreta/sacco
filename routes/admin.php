@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoanTypesController;
 use App\Http\Controllers\Admin\MeetingsController;
 use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TransactionsController;
 use Illuminate\Support\Facades\Route;
@@ -92,9 +93,15 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/', [MailRoomController::class, 'index'])->name('admin.mailroom.index');
     });
 
-    Route::prefix('/settings')->group(function() {
-        // Manage App Settings
-        Route::get('/', [SettingsController::class, 'index'])->name('admin.settings.index');
+    // Route::prefix('/settings')->group(function() {
+    //     // Manage App Settings
+    //     Route::get('/', [SettingsController::class, 'index'])->name('admin.settings.index');
+    // });
+
+    Route::prefix('/reports')->group(function() {
+        // Manage App reports
+        Route::get('/', [ReportsController::class, 'index'])->name('admin.reports.index');
+        Route::get('/transactions', [ReportsController::class, 'transactions'])->name('admin.reports.transactions');
     });
 
     Route::prefix('/feedback')->group(function() {

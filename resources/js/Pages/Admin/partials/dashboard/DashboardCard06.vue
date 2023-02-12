@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col col-span-full sm:col-span-6 xl:col-span-4 bg-white shadow-lg rounded-sm border border-gray-200">
     <header class="px-5 py-4 border-b border-gray-100">
-      <h2 class="font-semibold text-gray-800">Top Countries</h2>
+      <h2 class="font-semibold text-gray-800">Members Overview</h2>
     </header>
     <!-- Chart built with Chart.js 3 -->
     <!-- Change the height attribute to adjust the chart height -->
@@ -25,12 +25,12 @@ export default {
   },
   setup() {
     const chartData = ref({
-      labels: ['United States', 'Italy', 'Other'],
+      labels: ['Members', 'Admins', 'Employees'],
       datasets: [
         {
           label: 'Top Countries',
           data: [
-            35, 30, 35,
+            35, 3, 12,
           ],
           backgroundColor: [
             tailwindConfig().theme.colors.indigo[500],

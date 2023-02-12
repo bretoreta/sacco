@@ -3,7 +3,7 @@
     <div class="px-5 pt-5">
       <header class="flex justify-between items-start mb-2">
         <!-- Icon -->
-        <img src="../../../../img/icon-02.svg" width="32" height="32" alt="Icon 02" />
+        <img src="../../../../../img/icon-02.svg" width="32" height="32" alt="Icon 02" />
         <EditMenu align="right" class="relative inline-flex">
           <li>
             <a class="font-medium text-sm text-gray-600 hover:text-gray-800 flex py-1 px-3" href="#0">Option 1</a>
@@ -16,10 +16,10 @@
           </li>
         </EditMenu>
       </header>
-      <h2 class="text-lg font-semibold text-gray-800 mb-2">ClicksTribute Advanced</h2>
-      <div class="text-xs font-semibold text-gray-400 uppercase mb-1">Sales</div>
+      <h2 class="text-lg font-semibold text-gray-800 mb-2">Contributions</h2>
+      <div class="text-xs font-semibold text-gray-400 uppercase mb-1">Last Week Vs This Week in Ksh</div>
       <div class="flex items-start">
-        <div class="text-3xl font-bold text-gray-800 mr-2">$17,489</div>
+        <div class="text-3xl font-bold text-gray-800 mr-2">170,489</div>
         <div class="text-sm font-semibold text-white px-1.5 bg-yellow-500 rounded-full">-14%</div>
       </div>
     </div>

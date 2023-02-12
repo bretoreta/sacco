@@ -1,7 +1,7 @@
 <template>
   <div class="col-span-full xl:col-span-6 bg-white shadow-lg rounded-sm border border-gray-200">
     <header class="px-5 py-4 border-b border-gray-100">
-      <h2 class="font-semibold text-gray-800">Income/Expenses</h2>
+      <h2 class="font-semibold text-gray-800">Recent Transactions</h2>
     </header>
     <div class="p-3">
 
@@ -19,9 +19,9 @@
             </div>
             <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Qonto</a> billing</div>
+                <div class="self-center">Loan Disbursement to Lovan Solomon</div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-gray-800">-$49.88</span>
+                  <span class="font-medium text-gray-800">- Ksh. 490, 000.00</span>
                 </div>
               </div>
             </div>
@@ -35,9 +35,9 @@
             </div>
             <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Cruip.com</a> Market Ltd 70 Wilson St London</div>
+                <div class="self-center">Loan Repayment to account <span class="text-blue-500 font-bold">0eT5x-8fXXX</span></div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-green-500">+249.88</span>
+                  <span class="font-medium text-green-500">+ Ksh. 5,980.00</span>
                 </div>
               </div>
             </div>
@@ -51,9 +51,9 @@
             </div>
             <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Notion Labs Inc</a></div>
+                <div class="self-center">Loan Repayment to account <span class="text-blue-500 font-bold">0fr46-6eXXX</span></div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-green-500">+99.99</span>
+                  <span class="font-medium text-green-500">+ Ksh. 3,980.00</span>
                 </div>
               </div>
             </div>
@@ -67,9 +67,9 @@
             </div>
             <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">Market Cap Ltd</a></div>
+                <div class="self-center">Deposit from Mark Ongolo to account <span class="text-blue-500 font-bold">0x4g-7uyXXX</span></div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-green-500">+1,200.88</span>
+                  <span class="font-medium text-green-500">+ Ksh. 1,200.00</span>
                 </div>
               </div>
             </div>
@@ -83,9 +83,9 @@
             </div>
             <div class="grow flex items-center border-b border-gray-100 text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                <div class="self-center">Cancelled Transaction for account <span class="text-blue-500 font-bold">eR67-54eXXX</span></div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-gray-800 line-through">+$99.99</span>
+                  <span class="font-medium text-gray-800 line-through">+ Ksh. 10,099.00</span>
                 </div>
               </div>
             </div>
@@ -99,9 +99,9 @@
             </div>
             <div class="grow flex items-center text-sm py-2">
               <div class="grow flex justify-between">
-                <div class="self-center"><a class="font-medium text-gray-800 hover:text-gray-900" href="#0">App.com</a> Market Ltd 70 Wilson St London</div>
+                <div class="self-center">Loan Disbursement to Kalai Manala</div>
                 <div class="shrink-0 self-start ml-2">
-                  <span class="font-medium text-gray-800">-$49.88</span>
+                  <span class="font-medium text-gray-800">- Ksh. 100,000.00</span>
                 </div>
               </div>
             </div>
