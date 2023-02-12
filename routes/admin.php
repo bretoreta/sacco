@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\MembersController;
 use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TransactionsController;
+use App\Http\Controllers\Admin\TransactionsReportController;
 use Illuminate\Support\Facades\Route;
 
 // Administrator Route Groups
@@ -101,7 +102,10 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     Route::prefix('/reports')->group(function() {
         // Manage App reports
         Route::get('/', [ReportsController::class, 'index'])->name('admin.reports.index');
-        Route::get('/transactions', [ReportsController::class, 'transactions'])->name('admin.reports.transactions');
+        Route::get('/transactions', [TransactionsReportController::class, 'index'])->name('admin.reports.transactions.index');
+        Route::get('/transactions/generate-pdf', [TransactionsReportController::class, 'generatePdf'])->name('admin.reports.transactions.generatepdf');
+        Route::get('/transactions/pdf', [TransactionsReportController::class, 'showPdf'])->name('admin.reports.transactions.showpdf');
+        Route::post('/transactions/filter', [TransactionsReportController::class, 'filter'])->name('admin.reports.transactions.filter');
     });
 
     Route::prefix('/feedback')->group(function() {

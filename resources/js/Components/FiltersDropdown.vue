@@ -55,12 +55,12 @@ const alignmentClasses = computed(() => {
         >
             <div
                 v-show="open"
-                class="absolute z-50 mt-2 rounded-md shadow-lg w-72"
+                class="absolute z-50 mt-2 shadow-lg w-72"
                 :class="[alignmentClasses]"
                 style="display: none;"
                 @close="open = false"
             >
-                <div class="rounded-md ring-1 ring-black ring-opacity-5" :class="contentClasses">
+                <div class="ring-1 ring-black ring-opacity-5" :class="contentClasses">
                     <slot name="content" />
                 </div>
             </div>
