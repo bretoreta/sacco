@@ -5,10 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\FilterTransactionsRequest;
 use App\Models\Transaction;
-use Barryvdh\Snappy\Facades\SnappyPdf;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Inertia\Inertia;
+use Spatie\Browsershot\Browsershot;
 use Spatie\QueryBuilder\QueryBuilder;
 
 class TransactionsReportController extends Controller
@@ -30,16 +30,19 @@ class TransactionsReportController extends Controller
         return $this->handleFilters($data);
     }
 
-    public function generatePdf(Request $request)
+    public function search(Request $request)
     {
-        $pdf = App::make('snappy.pdf.wrapper');
-        $pdf->loadHTML('<h1>Test</h1>');
-        return $pdf->download();
-    }
+        $data = $request->validate([
+            'input' => 'required|string|max:255'
+        ]);
 
-    public function showPdf(Request $request)
-    {
-        
+        $transactions = Transaction::where('uuid', 'like', "%{$data['input']}%")->orWhereHas('user', function($query) use ($data) {
+            $query->where('name', 'like', "%{$data['input']}%")
+                    ->orWhere('phone_number', 'like', "%{$data['input']}%")
+                    ->orWhere('id_number', 'like', "%{$data['input']}%");
+        })->with(['user', 'actor'])->paginate();
+
+        return response()->json(data: $transactions, status: 200);
     }
 
     private function handleFilters($data)

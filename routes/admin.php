@@ -103,9 +103,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         // Manage App reports
         Route::get('/', [ReportsController::class, 'index'])->name('admin.reports.index');
         Route::get('/transactions', [TransactionsReportController::class, 'index'])->name('admin.reports.transactions.index');
-        Route::get('/transactions/generate-pdf', [TransactionsReportController::class, 'generatePdf'])->name('admin.reports.transactions.generatepdf');
-        Route::get('/transactions/pdf', [TransactionsReportController::class, 'showPdf'])->name('admin.reports.transactions.showpdf');
         Route::post('/transactions/filter', [TransactionsReportController::class, 'filter'])->name('admin.reports.transactions.filter');
+        Route::post('/transactions/search', [TransactionsReportController::class, 'search'])->name('admin.reports.transactions.search');
     });
 
     Route::prefix('/feedback')->group(function() {
