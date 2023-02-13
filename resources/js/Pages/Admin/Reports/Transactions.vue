@@ -111,11 +111,16 @@ const submitSearch = () => {
 }
 
 const generatePdf = () => {
+    pdfLoading.value = true;
 
-    html2pdf(document.getElementById("transactions-report"), {
+    html2pdf(document.getElementById("loans-report"), {
         margin: [5, 3],
         image: { type: 'jpeg', quality: 2 },
     });
+
+    setTimeout(() => {
+        pdfLoading.value = false
+    }, 3000)
 }
 
 const resetFilters = () => {

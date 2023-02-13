@@ -417,21 +417,15 @@
 							</a>
 							<div class="lg:hidden lg:sidebar-expanded:block 2xl:block">
 								<ul class="pl-9 mt-1" :class="!parentLink.expanded && 'hidden'">
-									<Link :href="route('admin.reports.index')"
-										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
-										:class="(route().current('admin.reports.index')) && '!text-teal-300'">
-									<span
-										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Recently Generated</span>
-									</Link>
 									<Link :href="route('admin.reports.transactions.index')"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
 										:class="(route().current('admin.reports.transactions.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Transactions</span>
 									</Link>
-									<Link :href="route('admin.reports.index')"
+									<Link :href="route('admin.reports.loans.index')"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
-										:class="(route().current('admin.reports.index')) && '!text-teal-300'">
+										:class="(route().current('admin.reports.loans.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Loans</span>
 									</Link>
