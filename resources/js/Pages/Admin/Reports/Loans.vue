@@ -111,6 +111,7 @@ const generatePdf = () => {
 
     html2pdf(document.getElementById("loans-report"), {
         margin: [5, 3],
+        filename: 'Storm SACCO - Loans Report.pdf',
         image: { type: 'jpeg', quality: 2 },
     });
 

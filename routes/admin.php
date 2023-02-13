@@ -6,8 +6,10 @@ use App\Http\Controllers\Admin\DocumentsController;
 use App\Http\Controllers\Admin\LoansController;
 use App\Http\Controllers\Admin\LoansReportController;
 use App\Http\Controllers\Admin\LoanTypesController;
+use App\Http\Controllers\Admin\LoanTypesReportController;
 use App\Http\Controllers\Admin\MeetingsController;
 use App\Http\Controllers\Admin\MembersController;
+use App\Http\Controllers\Admin\MembersReportController;
 use App\Http\Controllers\Admin\ReportsController;
 use App\Http\Controllers\Admin\SettingsController;
 use App\Http\Controllers\Admin\TransactionsController;
@@ -113,6 +115,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/loans', [LoansReportController::class, 'index'])->name('admin.reports.loans.index');
         Route::post('/loans/filter', [LoansReportController::class, 'filter'])->name('admin.reports.loans.filter');
         Route::post('/loans/search', [LoansReportController::class, 'search'])->name('admin.reports.loans.search');
+
+        // Manage Members Reports
+        Route::get('/members', [MembersReportController::class, 'index'])->name('admin.reports.members.index');
+        Route::post('/members/filter', [MembersReportController::class, 'filter'])->name('admin.reports.members.filter');
+        Route::post('/members/search', [MembersReportController::class, 'search'])->name('admin.reports.members.search');
     });
 
     Route::prefix('/feedback')->group(function() {

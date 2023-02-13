@@ -35,7 +35,7 @@ class LoansReportController extends Controller
             'input' => 'required|string|max:255'
         ]);
 
-        $transactions = LoanUser::WhereHas('user', function($query) use ($data) {
+        $loans = LoanUser::WhereHas('user', function($query) use ($data) {
             $query->where('name', 'like', "%{$data['input']}%")
                     ->orWhere('phone_number', 'like', "%{$data['input']}%")
                     ->orWhere('id_number', 'like', "%{$data['input']}%");
@@ -43,7 +43,7 @@ class LoansReportController extends Controller
             $query->where('loan_type', 'like', "%{$data['input']}%");
         })->with(['user', 'loan'])->latest()->paginate();
 
-        return response()->json(data: $transactions, status: 200);
+        return response()->json(data: $loans, status: 200);
     }
 
     private function handleFilters($data)

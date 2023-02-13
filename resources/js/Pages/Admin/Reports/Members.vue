@@ -12,7 +12,7 @@ import axios from 'axios';
 import html2pdf from "html2pdf.js";
 
 const pageprops = defineProps({
-    transactions: Object,
+    members: Object,
 });
 
 const NumberFormat = Intl.NumberFormat(undefined, { style: 'currency', currency: 'KSH' });
@@ -21,13 +21,7 @@ const form = useForm({
         start: null,
         end: null
     },
-    day: null,
-    for: {
-        loan_disbursement: false,
-        loan_repayment: false,
-        contribution: false,
-        deposit: false
-    },
+    status: '',
 });
 const search = reactive({
     input: '',
@@ -46,9 +40,9 @@ const applyFilters = () => {
         form.date.end = null;
     }
 
-    axios.post(route('admin.reports.transactions.filter'), form)
+    axios.post(route('admin.reports.members.filter'), form)
         .then((res) => {
-            usePage().props.transactions = res.data
+            usePage().props.members = res.data
             usePage().props.flash.message = {
                     type: 'success',
                     message: 'Filtering Was Successfull. ' + res.data.data?.length + ' results found.'
@@ -79,9 +73,9 @@ const applyFilters = () => {
 const submitSearch = () => {
     searchLoading.value = true;
     form.reset();
-    axios.post(route('admin.reports.transactions.search'), search)
+    axios.post(route('admin.reports.members.search'), search)
         .then((res) => {
-            usePage().props.transactions = res.data
+            usePage().props.members = res.data
             usePage().props.flash.message = {
                     type: 'success',
                     message: 'Search Was Successfull. ' + res.data.data?.length + ' results found.'
@@ -113,9 +107,9 @@ const submitSearch = () => {
 const generatePdf = () => {
     pdfLoading.value = true;
 
-    html2pdf(document.getElementById("transactions-report"), {
+    html2pdf(document.getElementById("members-report"), {
         margin: [5, 3],
-        filename: 'Storm SACCO - Transactions Report.pdf',
+        filename: 'Storm SACCO - Members Report.pdf',
         image: { type: 'jpeg', quality: 2 },
     });
 
@@ -126,7 +120,7 @@ const generatePdf = () => {
 
 const resetFilters = () => {
     form.reset();
-    router.visit(route('admin.reports.transactions.index'));
+    router.visit(route('admin.reports.members.index'));
 }
 
 const bannerTimeout = () => {
@@ -137,13 +131,13 @@ const bannerTimeout = () => {
 </script>
 
 <template>
-    <AdminLayout title="Transactions Report">
+    <AdminLayout title="Membbers Report">
         <div class="py-6 md:py-12">
             <div class="mx-auto sm:px-6 lg:px-8">
                 <div class="grid grid-cols-12 gap-5 px-4">
                     <div class="col-span-12">
                         <div class="pb-10">
-                            <h4 class="text-3xl">Transactions Report</h4>
+                            <h4 class="text-3xl">Members Report</h4>
                             <div class="mt-5">
                                 <div class="w-full">
                                     <div class="flex w-full items-center justify-between mb-4">
@@ -155,7 +149,7 @@ const bannerTimeout = () => {
                                             <template #trigger>
                                                 <button
                                                     class="bg-white px-6 py-3 shadow-sm text-gray-600 border border-gray-300 inline-flex justify-between items-center space-x-6 hover:bg-gray-50 active:bg-blue-100 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
-                                                    <p>Loan For</p>
+                                                    <p>Status</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -163,24 +157,16 @@ const bannerTimeout = () => {
                                             </template>
                                             <template #content>
                                                 <div class="p-5 w-full">
-                                                    <p class="text-gray-600 text-sm font-bold mb-5 uppercase">Tick all that apply</p>
+                                                    <p class="text-gray-600 text-sm font-bold mb-5 uppercase">Pick One</p>
                                                     <div class="flex flex-col space-y-3">
-                                                        <label class="flex items-center">
-                                                            <Checkbox v-model:checked="form.for.loan_disbursement" name="loan_disbursement" />
-                                                            <span class="ml-2 text-sm text-gray-600">Loan Disbursement</span>
-                                                        </label>
-                                                        <label class="flex items-center">
-                                                            <Checkbox v-model:checked="form.for.loan_repayment" name="loan_repayment" />
-                                                            <span class="ml-2 text-sm text-gray-600">Loan Repayment</span>
-                                                        </label>
-                                                        <label class="flex items-center">
-                                                            <Checkbox v-model:checked="form.for.contribution" name="contribution" />
-                                                            <span class="ml-2 text-sm text-gray-600">Contribution</span>
-                                                        </label>
-                                                        <label class="flex items-center">
-                                                            <Checkbox v-model:checked="form.for.deposit" name="deposit" />
-                                                            <span class="ml-2 text-sm text-gray-600">Deposit</span>
-                                                        </label>
+                                                        <div class="flex items-center cursor-pointer">
+                                                            <input v-model="form.status" id="verified" type="radio" value="verified" name="default-radio" class="w-4 h-4 text-blue-500 bg-gray-100 border-gray-300 focus:ring-blue-400 focus:ring-2">
+                                                            <label for="verified" class="ml-2 text-sm cursor-pointer font-medium text-gray-900">Verified</label>
+                                                        </div>
+                                                        <div class="flex items-center cursor-pointer">
+                                                            <input v-model="form.status" id="unverified" type="radio" value="unverified" name="default-radio" class="w-4 h-4 text-blue-500 bg-gray-100 border-gray-300 focus:ring-blue-400 focus:ring-2">
+                                                            <label for="unverified" class="ml-2 text-sm cursor-pointer font-medium text-gray-900">Unverified</label>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </template>
@@ -188,24 +174,8 @@ const bannerTimeout = () => {
                                         <FiltersDropdown :align="'left'">
                                             <template #trigger>
                                                 <button
-                                                    class="bg-white px-6 py-3 shadow-sm text-gray-600 border border-gray-300 inline-flex justify-between items-center space-x-6 hover:bg-gray-50 active:bg-blue-100 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
-                                                    <p>Specific Day</p>
-                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                                                    </svg>
-                                                </button>
-                                            </template>
-                                            <template #content>
-                                                <div class="p-4 w-full">
-                                                    <v-date-picker v-model="form.day" mode="date" />
-                                                </div>
-                                            </template>
-                                        </FiltersDropdown>
-                                        <FiltersDropdown :align="'left'">
-                                            <template #trigger>
-                                                <button
                                                     class="bg-white w-full px-6 py-3 shadow-sm text-gray-600 border border-gray-300 inline-flex justify-between items-center space-x-6 hover:bg-gray-50 active:bg-blue-100 focus:outline-none focus:border-blue-400 focus:ring focus:ring-blue-300 disabled:opacity-25 transition">
-                                                    <p>Date Range</p>
+                                                    <p>Member Since Range</p>
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
                                                     </svg>
@@ -217,14 +187,14 @@ const bannerTimeout = () => {
                                                 </div>
                                             </template>
                                         </FiltersDropdown>
-                                        <div class="flex-1 w-full">   
+                                        <div class="flex-1 w-full pl-0 md:pl-40">   
                                             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label>
                                             <form @submit.prevent="submitSearch">
                                                 <div class="relative w-full">
                                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                                                         <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                                     </div>
-                                                    <input v-model="search.input" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border bg-white focus:border-blue-400 focus:ring focus:ring-blue-300" :class="search.error ? 'border-red-500' : 'border-gray-300'" placeholder="Search By Transaction Number, User Name, ID Number or Phone..." required>
+                                                    <input v-model="search.input" type="search" id="default-search" class="block w-full p-4 pl-10 text-sm text-gray-900 border bg-white focus:border-blue-400 focus:ring focus:ring-blue-300" :class="search.error ? 'border-red-500' : 'border-gray-300'" placeholder="Search By Loan Type, User Name, ID Number or Phone..." required>
                                                     <button type="submit" :disabled="searchLoading" :class="{ 'opacity-75' : searchLoading }" class="text-white absolute right-2.5 bottom-2.5 bg-blue-500 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm px-4 py-2">
                                                         <span v-if="searchLoading" class="flex items-center">
                                                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4 mr-2 animate-spin">
@@ -266,12 +236,12 @@ const bannerTimeout = () => {
                                 </div>
                             </div>
                         </div>
-                        <div id="transactions-report">
+                        <div id="members-report">
                             <div class="bg-white dark:bg-gray-800">
                                 <div
                                     class="p-5 text-lg font-semibold text-left text-gray-900 dark:text-white">
-                                    Transactions Report
-                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Compiled report of transactions available in the system</p>
+                                    Members Report
+                                    <p class="mt-1 text-sm font-normal text-gray-500 dark:text-gray-400">Compiled report of members records in the system</p>
                                 </div>
                             </div>
                             <div class="relative overflow-x-auto">
@@ -279,59 +249,59 @@ const bannerTimeout = () => {
                                     <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                                         <tr>
                                             <th scope="col" class="px-6 py-3">
-                                                Transaction
+                                                Identity
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                In Favor Of
+                                                Address
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Initiated By
+                                                Phone Number
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                For
+                                                Status
                                             </th>
                                             <th scope="col" class="px-6 py-3">
-                                                Amount
+                                                Member Since
                                             </th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <template v-for="transaction in transactions.data" :key="transaction.id">
-                                            <tr class="bg-white border-b hover:bg-gray-50" :class="filtersLoading || searchLoading ? 'opacity-25' : 'opacity-100'">
+                                        <template v-for="member in members.data" :key="member.id">
+                                            <tr class="bg-white border-b hover:bg-gray-50">
                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                                    {{ transaction.uuid.substr(0, 7) + '...' }}
+                                                    <div>
+                                                        <p class="font-bold">{{ member.name }}</p>
+                                                        <p>ID - {{ member.id_number }}</p>
+                                                        <p>KRA - {{ member.kra_tax_number ?? 'N/A' }}</p>
+                                                    </div>
                                                 </th>
                                                 <td class="px-6 py-4">
-                                                    <div>
-                                                        <p>{{ transaction.user.name }}</p>
-                                                        <p>ID - {{ transaction.user.id_number }}</p>
-                                                        <p>Phone - {{ transaction.user.phone_number }}</p>
-                                                    </div>
+                                                    {{ member.address }}
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    {{ transaction.actor.name }}
+                                                    {{ member.phone_number }}
                                                 </td>
                                                 <td class="px-6 py-4 uppercase">
-                                                    {{ transaction.for }}
+                                                    <button v-if="member.email_verified_at" class="px-2 py-1 rounded-md shadow-md bg-green-500 text-white uppercase text-xs font-bold">
+                                                        Verified
+                                                    </button>
+                                                    <button v-else class="px-2 py-1 rounded-md shadow-md bg-gray-500 text-white uppercase text-xs font-bold">
+                                                        UnVerified
+                                                    </button>
                                                 </td>
                                                 <td class="px-6 py-4">
-                                                    <div v-if="transaction.type == 'debit'" class="px-2 py-1 text-red-500 uppercase font-bold">
-                                                        {{ NumberFormat.format(transaction.amount) }}
-                                                    </div>
-                                                    <div v-if="transaction.type == 'credit'" class="px-2 py-1 text-green-500 uppercase font-bold">
-                                                        {{ NumberFormat.format(transaction.amount) }}
-                                                    </div>
+                                                    {{ member.created }}
                                                 </td>
                                             </tr>
                                         </template>
                                     </tbody>
                                 </table>
-                                <div v-if="!transactions.data.length" class="bg-white w-full flex">
+                                <div v-if="!members.data.length" class="bg-white w-full flex">
                                     <div class="w-full py-4"><p class="text-xs italic text-center">No Data Found</p></div>
                                 </div>
                             </div>
                         </div>
-                        <Pagination v-if="transactions.data.length" :data="transactions" />
+                        <Pagination v-if="members.data.length" :data="members" />
                     </div>
                 </div>
             </div>
