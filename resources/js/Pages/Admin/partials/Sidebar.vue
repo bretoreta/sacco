@@ -435,9 +435,9 @@
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Members</span>
 									</Link>
-									<Link :href="route('admin.reports.index')"
+									<Link :href="route('admin.reports.accounts.index')"
 										class="mb-1 last:mb-0 block text-slate-400 hover:text-slate-200 transition duration-150 truncate"
-										:class="(route().current('admin.reports.index')) && '!text-teal-300'">
+										:class="(route().current('admin.reports.accounts.index')) && '!text-teal-300'">
 									<span
 										class="text-sm font-light lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Accounts</span>
 									</Link>

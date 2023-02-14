@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AccountsController;
+use App\Http\Controllers\Admin\AccountsReportController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\DocumentsController;
 use App\Http\Controllers\Admin\LoansController;
@@ -120,6 +121,11 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::get('/members', [MembersReportController::class, 'index'])->name('admin.reports.members.index');
         Route::post('/members/filter', [MembersReportController::class, 'filter'])->name('admin.reports.members.filter');
         Route::post('/members/search', [MembersReportController::class, 'search'])->name('admin.reports.members.search');
+
+        // Manage Accounts Reports
+        Route::get('/accounts', [AccountsReportController::class, 'index'])->name('admin.reports.accounts.index');
+        Route::post('/accounts/filter', [AccountsReportController::class, 'filter'])->name('admin.reports.accounts.filter');
+        Route::post('/accounts/search', [AccountsReportController::class, 'search'])->name('admin.reports.accounts.search');
     });
 
     Route::prefix('/feedback')->group(function() {
