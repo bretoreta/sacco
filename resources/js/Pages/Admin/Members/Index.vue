@@ -1,6 +1,7 @@
 <script setup>
 import { usePage } from '@inertiajs/vue3';
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import { Link } from '@inertiajs/vue3'
 
 const pageprops = defineProps({
     members: Object,
@@ -87,12 +88,12 @@ const bannerTimeout = () => {
                                 <tbody>
                                     <template v-for="member in members.data" :key="member.id">
                                         <tr class="bg-white border-b hover:bg-gray-50">
-                                            <th scope="row" class="px-6 py-4 font-medium text-gray-900">
-                                                <div>
+                                            <th scope="row" class="px-6 py-4 font-medium">
+                                                <Link :href="route('admin.members.show', member.id)" class="text-gray-800 hover:text-blue-500 duration-200">
                                                     <p class="font-bold">{{ member.name }}</p>
                                                     <p>ID - {{ member.id_number }}</p>
                                                     <p>Phone - {{ member.kra_tax_number ?? 'N/A' }}</p>
-                                                </div>
+                                                </Link>
                                             </th>
                                             <td class="px-6 py-4">
                                                 {{ member.address }}

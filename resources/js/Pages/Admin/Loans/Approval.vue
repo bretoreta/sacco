@@ -154,15 +154,15 @@ const deleteLoan = (uuid) => {
                                                 <p>Penalty rate @<span class="font-bold text-blue-500">{{ loan.plan.penalty_rate }}%</span></p>
                                             </td>
                                             <td class="px-6 py-4">
-                                                <button v-if="loan.status == 'pending'" class="px-2 py-1 rounded-md shadow-md bg-gray-500 text-white uppercase text-xs font-bold">
+                                                <span v-if="loan.status == 'pending'" class="px-2 py-1 rounded-md shadow-md bg-gray-500 text-white uppercase text-xs font-bold">
                                                     {{ loan.status }}
-                                                </button>
-                                                <button v-if="loan.status == 'approved'" class="px-2 py-1 rounded-md shadow-md bg-green-500 text-white uppercase text-xs font-bold">
+                                                </span>
+                                                <span v-if="loan.status == 'approved'" class="px-2 py-1 rounded-md shadow-md bg-green-500 text-white uppercase text-xs font-bold">
                                                     {{ loan.status }}
-                                                </button>
-                                                <button v-if="loan.status == 'rejected'" class="px-2 py-1 rounded-md shadow-md bg-red-500 text-white uppercase text-xs font-bold">
+                                                </span>
+                                                <span v-if="loan.status == 'rejected'" class="px-2 py-1 rounded-md shadow-md bg-red-500 text-white uppercase text-xs font-bold">
                                                     {{ loan.status }}
-                                                </button>
+                                                </span>
                                             </td>
                                             <td class="px-6 py-4">
                                                 <div class="quick_actions flex items-center justify-start space-x-3">

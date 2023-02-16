@@ -80,6 +80,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Account::class, 'user_id');
     }
 
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class, 'user_id');
+    }
+
     public function getCreatedAttribute()
     {
         return Carbon::parse($this->created_at)->format('d M, Y');

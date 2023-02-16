@@ -55,6 +55,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
         Route::post('/', [MembersController::class, 'store'])->name('admin.members.store');
         Route::get('/manage', [MembersController::class, 'manage'])->name('admin.members.manage');
         Route::get('/create', [MembersController::class, 'create'])->name('admin.members.create');
+        Route::get('/{user}/show', [MembersController::class, 'show'])->name('admin.members.show');
         Route::put('/{user}/update', [MembersController::class, 'update'])->name('admin.members.update');
 
         Route::post('/{user}/verify', [MembersController::class, 'verify'])->name('admin.members.verify');

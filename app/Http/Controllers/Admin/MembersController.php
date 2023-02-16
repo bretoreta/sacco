@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\StoreMemberRequest;
 use App\Http\Requests\Admin\UpdateMemberRequest;
+use App\Models\LoanUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +34,14 @@ class MembersController extends Controller
             'admins_count' => User::role('admin')->count(),
             'members_count' => User::role('member')->count(),
             'employees_count' => User::role('employee')->count(),
+        ]);
+    }
+
+    public function show(User $user)
+    {
+        return Inertia::render('Admin/Members/Show', [
+            'member' => $user->load(['accounts.account_type', 'transactions.actor', 'transactions.account.account_type']),
+            'loans' => LoanUser::where('user_id', $user->id)->with(['plan', 'loan'])->get(),
         ]);
     }
 

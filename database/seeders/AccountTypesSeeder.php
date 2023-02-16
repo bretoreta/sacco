@@ -21,7 +21,7 @@ class AccountTypesSeeder extends Seeder
         ]);
 
         AccountType::create([
-            'name' => 'Contribution Account',
+            'name' => 'Contributions Account',
             'description' => 'Account for contribution purposes',
         ]);
 

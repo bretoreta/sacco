@@ -69,24 +69,22 @@ const submit = () => {
             </div>
 
             <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
+                <div class="flex items-center justify-between space-x-4">
+                    <label class="flex items-center">
+                        <Checkbox v-model:checked="form.remember" name="remember" />
+                        <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    </label>
 
-            <div class="flex items-center justify-between mt-4">
-                <div class="flex items-center space-x-4">
                     <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
                         Forgot your password?
                     </Link>
-
-                    <p class="text-gray-600">or</p>
-
-                    <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                        Register
-                    </Link>
                 </div>
+            </div>
+
+            <div class="flex items-center justify-between mt-4">
+                <Link :href="route('register')" class="underline text-sm text-gray-600 hover:text-gray-900">
+                    Register A New Account
+                </Link>
 
                 <PrimaryButton class="ml-4 transition-[width] ease-linear duration-300" :class="{ 'opacity-90 w-fit': form.processing }" :disabled="form.processing">
                     <div class="text-white inline-flex space-x-2 items-center" v-if="form.processing">
