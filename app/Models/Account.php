@@ -22,6 +22,10 @@ class Account extends Model
         'available_balance'
     ];
 
+    protected $casts = [
+        'created_at' => 'datetime:d M,y'
+    ];
+
     public function account_type()
     {
         return $this->belongsTo(AccountType::class);

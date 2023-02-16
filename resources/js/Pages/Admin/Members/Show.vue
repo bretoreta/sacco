@@ -205,13 +205,17 @@ const bannerTimeout = () => {
                                     <h4 class="text-gray-600 font-semibold text-lg">Accounts</h4>
                                     <div class="inline-flex items-center justify-center w-8 h-8 text-sm font-bold text-blue-500 bg-blue-200 border-2 border-white rounded-full">{{ member.accounts.length }}</div>
                                 </div>
-                                <div class="px-8 pt-5">
+                                <div class="p-3">
                                     <template v-for="account in member.accounts" :key="account.uuid">
-                                        <div class="my-4 border-b border-gray-200 last:border-0 pb-3">
+                                        <div class="my-3 hover:bg-gray-100 rounded-md p-3 duration-200">
                                             <div class="flex items-start justify-between">
                                                 <div>
                                                     <h4 class="font-semibold text-gray-500">{{ account.account_type.name }}</h4>
                                                     <p class="text-sm text-gray-500 mt-1">{{ NumberFormat.format(account.available_balance) }}</p>
+                                                    <div class="text-xs mt-3">
+                                                        <p class="text-gray-500">{{ account.account_type.description }}</p>
+                                                        <p class="text-gray-500">Created on <span class="font-bold text-blue-500">{{ account.created_at }}</span> by <span class="font-bold text-blue-500">Administrator </span></p>
+                                                    </div>
                                                 </div>
                                                 <div class="mt-2">
                                                     <span v-if="account.status == 'active'" class="bg-green-500 capitalize text-white shadow-md text-xs font-medium mr-2 px-2.5 py-0.5 rounded">{{ account.status }}</span>
@@ -277,9 +281,9 @@ const bannerTimeout = () => {
                                     <h4 class="text-gray-600 font-semibold text-lg">Loans</h4>
                                     <div class="inline-flex items-center justify-center w-8 h-8 text-sm font-bold text-blue-500 bg-blue-200 border-2 border-white rounded-full">{{ loans.length }}</div>
                                 </div>
-                                <div class="px-8 pt-5">
+                                <div class="p-3">
                                     <template v-for="loan in loans" :key="loan.uuid">
-                                        <div class="my-4 border-b border-gray-200 last:border-0 pb-3">
+                                        <div class="my-3 hover:bg-gray-100 rounded-md p-3 duration-200">
                                             <div class="flex items-start justify-between">
                                                 <div>
                                                     <h4 class="font-semibold text-gray-500">{{ loan.loan.loan_type }}</h4>
