@@ -20,8 +20,7 @@ class MembersController extends Controller
             'admins_count' => User::role('admin')->count(),
             'members_count' => User::role('member')->count(),
             'employees_count' => User::role('employee')->count(),
-            'members' => User::role('member')
-                                ->latest()
+            'members' => User::latest()
                                 ->paginate()
                                 ->appends(request()->query())
         ]);
