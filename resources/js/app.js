@@ -6,7 +6,7 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import { VueApexCharts } from 'vue3-apexcharts';
-import { VCalendar } from 'v-calendar';
+import VCalendar from 'v-calendar';
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
