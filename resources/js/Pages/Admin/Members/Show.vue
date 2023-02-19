@@ -346,7 +346,7 @@ const bannerTimeout = () => {
                                             </div>
                                         </div>
                                     </template>
-                                    <div v-if="!member.accounts.length" class="grid items-center justify-center pb-10">
+                                    <div v-if="!member.accounts" class="grid items-center justify-center pb-10">
                                         <div class="flex flex-col items-center justify-center">
                                             <img src="../../../../img/no-loan-doodle.svg" alt="No Loans Doodle" class="w-60 object-contain">
                                             <div class="mt-6 flex flex-col items-center justify-center">
